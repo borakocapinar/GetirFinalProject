@@ -16,11 +16,29 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         guard let windowScene = (scene as? UIWindowScene) else { return }
         let window = UIWindow(windowScene: windowScene)
-        window.rootViewController = ViewController()
-        window.makeKeyAndVisible()
+        let vc = ListingViewController()
+        let nav = UINavigationController(rootViewController: vc)
+        configureNavigationBarAppearance(for: nav)
+        window.rootViewController = nav
         self.window = window
+        self.window?.makeKeyAndVisible()
+        
     }
-
+    
+    
+    func configureNavigationBarAppearance(for navigationController: UINavigationController) {
+            let appearance = UINavigationBarAppearance()
+            appearance.configureWithOpaqueBackground()
+            appearance.backgroundColor = UIColor(red: 93 / 255, green: 62 / 255, blue: 188 / 255, alpha: 1.0)
+            // setup font and text color
+        guard let font = UIFont(name: "OpenSans-Bold", size: 14.0) else{return}
+            appearance.titleTextAttributes = [NSAttributedString.Key.font: font, NSAttributedString.Key.foregroundColor: UIColor.white]
+            navigationController.navigationBar.standardAppearance = appearance
+            navigationController.navigationBar.scrollEdgeAppearance = navigationController.navigationBar.standardAppearance
+           
+        }
+    
+    
     func sceneDidDisconnect(_ scene: UIScene) {
         // Called as the scene is being released by the system.
         // This occurs shortly after the scene enters the background, or when its session is discarded.
