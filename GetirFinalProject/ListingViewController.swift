@@ -45,7 +45,7 @@ class ListingViewController: UIViewController {
         view.addSubview(collectionView)
         
         // Register cell classes
-        collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "cell")
+        collectionView.register(ProductCollectionViewCell.self, forCellWithReuseIdentifier: "cell")
         collectionView.dataSource = self
         
     }
@@ -54,14 +54,14 @@ class ListingViewController: UIViewController {
         let layout = UICollectionViewCompositionalLayout { (sectionIndex: Int, layoutEnvironment: NSCollectionLayoutEnvironment) -> NSCollectionLayoutSection? in
             if sectionIndex == 0 {
                 // First section layout (horizontal scrolling)
-                let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.25), heightDimension: .fractionalHeight(0.8))
+                let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.20), heightDimension: .fractionalHeight(1))
                 let item = NSCollectionLayoutItem(layoutSize: itemSize)
                 item.contentInsets = NSDirectionalEdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 8)
-                let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(185))
+                let groupSize = NSCollectionLayoutSize(widthDimension: .estimated(556), heightDimension: .estimated(185))
                 let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
                 let section = NSCollectionLayoutSection(group: group)
                 section.orthogonalScrollingBehavior = .continuous
-                section.contentInsets = NSDirectionalEdgeInsets(top: 16, leading: 0, bottom: 0, trailing: 0)
+                section.contentInsets = NSDirectionalEdgeInsets(top: 16, leading: 8, bottom: 0, trailing: 8)
                 return section
             } else {
                 // Second section layout (vertical scrolling with 3 items in a row)
@@ -71,7 +71,7 @@ class ListingViewController: UIViewController {
                 let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(200))
                 let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitem: item, count: 3)
                 let section = NSCollectionLayoutSection(group: group)
-                section.contentInsets = NSDirectionalEdgeInsets(top: 16, leading: 0, bottom: 0, trailing: 0)
+                section.contentInsets = NSDirectionalEdgeInsets(top: 16, leading: 8, bottom: 0, trailing: 8)
                 
               
                 
@@ -93,7 +93,7 @@ class ListingViewController: UIViewController {
         
         func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath)
-            cell.backgroundColor = .systemPurple // Set a background color so you can see the cells
+//            cell.backgroundColor = .systemPurple // Set a background color to see the cell
             return cell
         }
     }
