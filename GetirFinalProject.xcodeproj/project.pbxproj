@@ -84,13 +84,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		93122A032BC6E51B00C0540F /* Frameworks */ = {
+		93122A032BC6E51B00C0540F /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
 				9365FA112BC727DA00B37B0F /* OpenSans-Bold.ttf */,
 				9365FA102BC727DA00B37B0F /* OpenSans-SemiBold.ttf */,
 			);
-			name = Frameworks;
+			name = Fonts;
 			sourceTree = "<group>";
 		};
 		93122A072BC70D2800C0540F /* SupportingFiles */ = {
@@ -104,6 +104,24 @@
 			path = SupportingFiles;
 			sourceTree = "<group>";
 		};
+		938736DD2BC83810006ABE58 /* Scene */ = {
+			isa = PBXGroup;
+			children = (
+				9365FA162BC73EF000B37B0F /* ProductDetailViewController.swift */,
+				9365FA142BC73ED600B37B0F /* ListingViewController.swift */,
+				9365FA182BC73F0000B37B0F /* BasketViewController.swift */,
+			);
+			name = Scene;
+			sourceTree = "<group>";
+		};
+		938736DE2BC8382E006ABE58 /* CustomComponents */ = {
+			isa = PBXGroup;
+			children = (
+				9365FA1B2BC750A300B37B0F /* BasketButton.swift */,
+			);
+			path = CustomComponents;
+			sourceTree = "<group>";
+		};
 		93A57F652BC5F2B10052BD01 = {
 			isa = PBXGroup;
 			children = (
@@ -111,7 +129,7 @@
 				93A57F872BC5F2B20052BD01 /* GetirFinalProjectTests */,
 				93A57F912BC5F2B20052BD01 /* GetirFinalProjectUITests */,
 				93A57F6F2BC5F2B10052BD01 /* Products */,
-				93122A032BC6E51B00C0540F /* Frameworks */,
+				93122A032BC6E51B00C0540F /* Fonts */,
 			);
 			sourceTree = "<group>";
 		};
@@ -128,11 +146,9 @@
 		93A57F702BC5F2B10052BD01 /* GetirFinalProject */ = {
 			isa = PBXGroup;
 			children = (
+				938736DE2BC8382E006ABE58 /* CustomComponents */,
 				93122A072BC70D2800C0540F /* SupportingFiles */,
-				9365FA142BC73ED600B37B0F /* ListingViewController.swift */,
-				9365FA162BC73EF000B37B0F /* ProductDetailViewController.swift */,
-				9365FA182BC73F0000B37B0F /* BasketViewController.swift */,
-				9365FA1B2BC750A300B37B0F /* BasketButton.swift */,
+				938736DD2BC83810006ABE58 /* Scene */,
 			);
 			path = GetirFinalProject;
 			sourceTree = "<group>";
