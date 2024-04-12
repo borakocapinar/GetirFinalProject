@@ -50,6 +50,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             // setup font and text color
         
         appearance.titleTextAttributes = [NSAttributedString.Key.font: CustomFont.openSansBold, NSAttributedString.Key.foregroundColor: UIColor.white]
+        
             navigationController.navigationBar.standardAppearance = appearance
             navigationController.navigationBar.scrollEdgeAppearance = navigationController.navigationBar.standardAppearance
            

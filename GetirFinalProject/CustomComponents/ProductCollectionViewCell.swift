@@ -22,7 +22,7 @@ class ProductCollectionViewCell: UICollectionViewCell {
             imageView.layer.borderColor = CustomColor.primarySubtitle.cgColor
 
         //Test
-        imageView.image = UIImage(named: "sampleItem")
+        imageView.image = UIImage(named: "itemIcon")
             return imageView
         }()
         
@@ -54,6 +54,11 @@ class ProductCollectionViewCell: UICollectionViewCell {
             return label
         }()
     
+    lazy var verticalAddToCartbuttonView : VerticalAddToCartButtonView = {
+       let button = VerticalAddToCartButtonView()
+        return button
+    }()
+    
         
         
         override init(frame: CGRect) {
@@ -70,6 +75,14 @@ class ProductCollectionViewCell: UICollectionViewCell {
             addSubview(priceLabel)
             addSubview(nameLabel)
             addSubview(attributeLabel)
+            addSubview(verticalAddToCartbuttonView)
+            
+            
+            verticalAddToCartbuttonView.snp.makeConstraints { make in
+                make.top.equalToSuperview().offset(-4)
+                make.width.equalTo(32)
+                make.right.equalToSuperview().offset(4)
+            }
             
             imageView.snp.makeConstraints { make in
                 make.top.equalToSuperview()
@@ -92,6 +105,8 @@ class ProductCollectionViewCell: UICollectionViewCell {
                 make.top.equalTo(nameLabel.snp.bottom).offset(2)
                 make.leading.equalTo(imageView.snp.leading)
             }
+            
+           
         }
     
     
