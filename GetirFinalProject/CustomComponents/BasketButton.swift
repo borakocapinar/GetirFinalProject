@@ -57,7 +57,7 @@ class BasketButton: UIButton {
     private func setupLabelView(){
         // Create a view for the label
         let labelView = UIView()
-        labelView.backgroundColor = UIColor(red: 242.0/255.0, green: 240.0/255.0, blue: 250.0/255.0, alpha: 1.0)
+        labelView.backgroundColor = CustomColor.primarySubtitle
         labelView.layer.cornerRadius = super.layer.cornerRadius
         labelView.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMaxXMaxYCorner]
         labelView.isUserInteractionEnabled = false
@@ -66,7 +66,7 @@ class BasketButton: UIButton {
         label.text = "₺0,00"
         guard let font = UIFont(name: "OpenSans-Bold", size: 14.0) else{return}
         label.font = font
-        label.textColor = UIColor(red: 93.0/255.0, green: 62.0/255.0, blue: 188.0/255.0, alpha: 1.0)
+        label.textColor = CustomColor.getirPurple
         label.textAlignment = .center
         labelView.addSubview(label)
         

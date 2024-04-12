@@ -16,13 +16,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         
         //MARK: - Start TEST CASE
-        guard let windowScene = (scene as? UIWindowScene) else { return }
-        let window = UIWindow(windowScene: windowScene)
-        let vc = tryUIViewController()
-        window.rootViewController = vc
-        self.window = window
-        self.window?.makeKeyAndVisible()
-        
+//        guard let windowScene = (scene as? UIWindowScene) else { return }
+//        let window = UIWindow(windowScene: windowScene)
+//        let vc = tryUIViewController()
+//        window.rootViewController = vc
+//        self.window = window
+//        self.window?.makeKeyAndVisible()
+//        
         
         
         
@@ -31,14 +31,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         //MARK: -  Original Case
         
-//        guard let windowScene = (scene as? UIWindowScene) else { return }
-//        let window = UIWindow(windowScene: windowScene)
-//        let vc = ListingViewController()
-//        let nav = UINavigationController(rootViewController: vc)
-//        configureNavigationBarAppearance(for: nav)
-//        window.rootViewController = nav
-//        self.window = window
-//        self.window?.makeKeyAndVisible()
+        guard let windowScene = (scene as? UIWindowScene) else { return }
+        let window = UIWindow(windowScene: windowScene)
+        let vc = ListingViewController()
+        let nav = UINavigationController(rootViewController: vc)
+        configureNavigationBarAppearance(for: nav)
+        window.rootViewController = nav
+        self.window = window
+        self.window?.makeKeyAndVisible()
         
     }
     
@@ -46,10 +46,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func configureNavigationBarAppearance(for navigationController: UINavigationController) {
             let appearance = UINavigationBarAppearance()
             appearance.configureWithOpaqueBackground()
-            appearance.backgroundColor = UIColor(red: 93 / 255, green: 62 / 255, blue: 188 / 255, alpha: 1.0)
+        appearance.backgroundColor = CustomColor.getirPurple
             // setup font and text color
-        guard let font = UIFont(name: "OpenSans-Bold", size: 14.0) else{return}
-            appearance.titleTextAttributes = [NSAttributedString.Key.font: font, NSAttributedString.Key.foregroundColor: UIColor.white]
+        
+        appearance.titleTextAttributes = [NSAttributedString.Key.font: CustomFont.openSansBold, NSAttributedString.Key.foregroundColor: UIColor.white]
             navigationController.navigationBar.standardAppearance = appearance
             navigationController.navigationBar.scrollEdgeAppearance = navigationController.navigationBar.standardAppearance
            

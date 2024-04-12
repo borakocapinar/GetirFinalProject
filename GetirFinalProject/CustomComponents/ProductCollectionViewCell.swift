@@ -10,8 +10,7 @@ import UIKit
 import SnapKit
 
 class ProductCollectionViewCell: UICollectionViewCell {
-    let fontBold = UIFont(name: "OpenSans-Bold", size: 14)
-    let fontSemiBold = UIFont(name: "OpenSans-SemiBold", size: 12)
+    
     
     
         lazy var imageView: UIImageView = {
@@ -20,7 +19,7 @@ class ProductCollectionViewCell: UICollectionViewCell {
             imageView.clipsToBounds = true
             imageView.layer.cornerRadius = 16
             imageView.layer.borderWidth = 1
-            imageView.layer.borderColor = UIColor(red: 242/255, green: 240/255, blue: 250/255, alpha: 1.0).cgColor
+            imageView.layer.borderColor = CustomColor.primarySubtitle.cgColor
 
         //Test
         imageView.image = UIImage(named: "sampleItem")
@@ -30,9 +29,9 @@ class ProductCollectionViewCell: UICollectionViewCell {
         lazy var priceLabel: UILabel = {
             let label = UILabel()
             label.textAlignment = .left
-            label.font = fontBold
+            label.font = CustomFont.openSansBold
             label.text = "₺0,00"
-            label.textColor = UIColor(red: 93/255, green: 62/255, blue: 188/255, alpha: 1.0)
+            label.textColor = CustomColor.getirPurple
 
             return label
         }()
@@ -40,18 +39,18 @@ class ProductCollectionViewCell: UICollectionViewCell {
         lazy var nameLabel: UILabel = {
             let label = UILabel()
             label.textAlignment = .left
-            label.font = fontSemiBold
+            label.font = CustomFont.openSansSemiBold
             label.text = "Product Name"
-            label.textColor = UIColor(red: 25/255, green: 25/255, blue: 25/255, alpha: 1.0)
+            label.textColor = CustomColor.textDark
             return label
         }()
         
         lazy var attributeLabel: UILabel = {
             let label = UILabel()
             label.textAlignment = .left
-            label.font = fontSemiBold
+            label.font = CustomFont.openSansSemiBold
             label.text = "Attribute"
-            label.textColor = UIColor(red: 105/255, green: 116/255, blue: 136/255, alpha: 1.0)
+            label.textColor = CustomColor.textSecondary
             return label
         }()
     

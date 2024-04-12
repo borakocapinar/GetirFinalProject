@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9338F5642BC96F3100843CCA /* StyleConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9338F5632BC96F3100843CCA /* StyleConstants.swift */; };
 		9365FA0D2BC70F5D00B37B0F /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 9365FA0C2BC70F5D00B37B0F /* SnapKit */; };
 		9365FA122BC727DB00B37B0F /* OpenSans-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9365FA102BC727DA00B37B0F /* OpenSans-SemiBold.ttf */; };
 		9365FA132BC727DB00B37B0F /* OpenSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9365FA112BC727DA00B37B0F /* OpenSans-Bold.ttf */; };
@@ -43,6 +44,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9338F5632BC96F3100843CCA /* StyleConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StyleConstants.swift; sourceTree = "<group>"; };
 		9365FA102BC727DA00B37B0F /* OpenSans-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-SemiBold.ttf"; sourceTree = "<group>"; };
 		9365FA112BC727DA00B37B0F /* OpenSans-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Bold.ttf"; sourceTree = "<group>"; };
 		9365FA142BC73ED600B37B0F /* ListingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListingViewController.swift; sourceTree = "<group>"; };
@@ -166,6 +168,7 @@
 				938736DE2BC8382E006ABE58 /* CustomComponents */,
 				93122A072BC70D2800C0540F /* SupportingFiles */,
 				938736DD2BC83810006ABE58 /* Scene */,
+				9338F5632BC96F3100843CCA /* StyleConstants.swift */,
 			);
 			path = GetirFinalProject;
 			sourceTree = "<group>";
@@ -331,6 +334,7 @@
 				938736E02BC863CD006ABE58 /* ProductCollectionViewCell.swift in Sources */,
 				9365FA172BC73EF000B37B0F /* ProductDetailViewController.swift in Sources */,
 				93A57F722BC5F2B10052BD01 /* AppDelegate.swift in Sources */,
+				9338F5642BC96F3100843CCA /* StyleConstants.swift in Sources */,
 				93A57F742BC5F2B10052BD01 /* SceneDelegate.swift in Sources */,
 				9365FA1C2BC750A300B37B0F /* BasketButton.swift in Sources */,
 			);
