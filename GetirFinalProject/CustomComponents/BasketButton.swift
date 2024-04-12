@@ -15,8 +15,6 @@ class BasketButton: UIButton {
     init() {
         super.init(frame: .zero)
         setupButton()
-        bringSubviewToFront(self)
-        isUserInteractionEnabled = true
     }
     
     required init?(coder: NSCoder) {
@@ -32,6 +30,8 @@ class BasketButton: UIButton {
         setupImageView()
         setupLabelView()
         }
+    
+    
     
     private func setupImageView(){
         let imageView = UIView()

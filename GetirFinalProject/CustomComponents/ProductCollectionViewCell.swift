@@ -18,12 +18,12 @@ class ProductCollectionViewCell: UICollectionViewCell {
             let imageView = UIImageView()
             imageView.contentMode = .scaleAspectFill
             imageView.clipsToBounds = true
-            imageView.layer.cornerRadius = 10
+            imageView.layer.cornerRadius = 16
             imageView.layer.borderWidth = 1
             imageView.layer.borderColor = UIColor(red: 242/255, green: 240/255, blue: 250/255, alpha: 1.0).cgColor
 
         //Test
-        imageView.image = UIImage(named: "itemIcon")
+        imageView.image = UIImage(named: "sampleItem")
             return imageView
         }()
         
