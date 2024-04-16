@@ -8,6 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		9338F5642BC96F3100843CCA /* StyleConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9338F5632BC96F3100843CCA /* StyleConstants.swift */; };
+		935ACB522BCD97FC00B7EB73 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935ACB512BCD97FC00B7EB73 /* Product.swift */; };
+		935ACB552BCDBC5800B7EB73 /* ProductNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935ACB542BCDBC5800B7EB73 /* ProductNetworkManager.swift */; };
+		935ACB592BCDBCE600B7EB73 /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = 935ACB582BCDBCE600B7EB73 /* Moya */; };
+		935ACB5B2BCDBCE600B7EB73 /* RxMoya in Frameworks */ = {isa = PBXBuildFile; productRef = 935ACB5A2BCDBCE600B7EB73 /* RxMoya */; };
+		935ACB5D2BCDBD2F00B7EB73 /* ProductService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935ACB5C2BCDBD2F00B7EB73 /* ProductService.swift */; };
+		935ACB5F2BCDBD9E00B7EB73 /* ProductService+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935ACB5E2BCDBD9E00B7EB73 /* ProductService+Extension.swift */; };
 		9365FA0D2BC70F5D00B37B0F /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 9365FA0C2BC70F5D00B37B0F /* SnapKit */; };
 		9365FA122BC727DB00B37B0F /* OpenSans-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9365FA102BC727DA00B37B0F /* OpenSans-SemiBold.ttf */; };
 		9365FA132BC727DB00B37B0F /* OpenSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9365FA112BC727DA00B37B0F /* OpenSans-Bold.ttf */; };
@@ -45,6 +51,10 @@
 
 /* Begin PBXFileReference section */
 		9338F5632BC96F3100843CCA /* StyleConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StyleConstants.swift; sourceTree = "<group>"; };
+		935ACB512BCD97FC00B7EB73 /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
+		935ACB542BCDBC5800B7EB73 /* ProductNetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductNetworkManager.swift; sourceTree = "<group>"; };
+		935ACB5C2BCDBD2F00B7EB73 /* ProductService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductService.swift; sourceTree = "<group>"; };
+		935ACB5E2BCDBD9E00B7EB73 /* ProductService+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProductService+Extension.swift"; sourceTree = "<group>"; };
 		9365FA102BC727DA00B37B0F /* OpenSans-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-SemiBold.ttf"; sourceTree = "<group>"; };
 		9365FA112BC727DA00B37B0F /* OpenSans-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Bold.ttf"; sourceTree = "<group>"; };
 		9365FA142BC73ED600B37B0F /* ListingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListingViewController.swift; sourceTree = "<group>"; };
@@ -71,6 +81,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				935ACB5B2BCDBCE600B7EB73 /* RxMoya in Frameworks */,
+				935ACB592BCDBCE600B7EB73 /* Moya in Frameworks */,
 				9365FA0D2BC70F5D00B37B0F /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -112,6 +124,31 @@
 			path = SupportingFiles;
 			sourceTree = "<group>";
 		};
+		935ACB502BCD979E00B7EB73 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				935ACB512BCD97FC00B7EB73 /* Product.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		935ACB532BCDBC3C00B7EB73 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				935ACB542BCDBC5800B7EB73 /* ProductNetworkManager.swift */,
+				935ACB5C2BCDBD2F00B7EB73 /* ProductService.swift */,
+				935ACB5E2BCDBD9E00B7EB73 /* ProductService+Extension.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		935ACB572BCDBCE600B7EB73 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		938736DD2BC83810006ABE58 /* Scene */ = {
 			isa = PBXGroup;
 			children = (
@@ -148,6 +185,7 @@
 				93A57F912BC5F2B20052BD01 /* GetirFinalProjectUITests */,
 				93A57F6F2BC5F2B10052BD01 /* Products */,
 				93122A032BC6E51B00C0540F /* Fonts */,
+				935ACB572BCDBCE600B7EB73 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -164,6 +202,8 @@
 		93A57F702BC5F2B10052BD01 /* GetirFinalProject */ = {
 			isa = PBXGroup;
 			children = (
+				935ACB532BCDBC3C00B7EB73 /* Network */,
+				935ACB502BCD979E00B7EB73 /* Model */,
 				938736E12BC88A6F006ABE58 /* try */,
 				938736DE2BC8382E006ABE58 /* CustomComponents */,
 				93122A072BC70D2800C0540F /* SupportingFiles */,
@@ -208,6 +248,8 @@
 			name = GetirFinalProject;
 			packageProductDependencies = (
 				9365FA0C2BC70F5D00B37B0F /* SnapKit */,
+				935ACB582BCDBCE600B7EB73 /* Moya */,
+				935ACB5A2BCDBCE600B7EB73 /* RxMoya */,
 			);
 			productName = GetirFinalProject;
 			productReference = 93A57F6E2BC5F2B10052BD01 /* GetirFinalProject.app */;
@@ -283,6 +325,7 @@
 			mainGroup = 93A57F652BC5F2B10052BD01;
 			packageReferences = (
 				93122A022BC6E46400C0540F /* XCRemoteSwiftPackageReference "SnapKit" */,
+				935ACB562BCDBCB600B7EB73 /* XCRemoteSwiftPackageReference "Moya" */,
 			);
 			productRefGroup = 93A57F6F2BC5F2B10052BD01 /* Products */;
 			projectDirPath = "";
@@ -330,10 +373,14 @@
 				938736E42BC88A93006ABE58 /* tryUIViewController.swift in Sources */,
 				9365FA192BC73F0000B37B0F /* BasketViewController.swift in Sources */,
 				9365FA152BC73ED600B37B0F /* ListingViewController.swift in Sources */,
+				935ACB5F2BCDBD9E00B7EB73 /* ProductService+Extension.swift in Sources */,
 				938736E82BC8AE0C006ABE58 /* VerticalAddToCartButtonView.swift in Sources */,
 				938736E02BC863CD006ABE58 /* ProductCollectionViewCell.swift in Sources */,
+				935ACB522BCD97FC00B7EB73 /* Product.swift in Sources */,
+				935ACB5D2BCDBD2F00B7EB73 /* ProductService.swift in Sources */,
 				9365FA172BC73EF000B37B0F /* ProductDetailViewController.swift in Sources */,
 				93A57F722BC5F2B10052BD01 /* AppDelegate.swift in Sources */,
+				935ACB552BCDBC5800B7EB73 /* ProductNetworkManager.swift in Sources */,
 				9338F5642BC96F3100843CCA /* StyleConstants.swift in Sources */,
 				93A57F742BC5F2B10052BD01 /* SceneDelegate.swift in Sources */,
 				9365FA1C2BC750A300B37B0F /* BasketButton.swift in Sources */,
@@ -498,9 +545,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = Q82F683A8T;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = GetirFinalProject/SupportingFiles/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -528,9 +575,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = Q82F683A8T;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = GetirFinalProject/SupportingFiles/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -674,9 +721,27 @@
 				minimumVersion = 5.7.1;
 			};
 		};
+		935ACB562BCDBCB600B7EB73 /* XCRemoteSwiftPackageReference "Moya" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Moya/Moya.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 15.0.3;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		935ACB582BCDBCE600B7EB73 /* Moya */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 935ACB562BCDBCB600B7EB73 /* XCRemoteSwiftPackageReference "Moya" */;
+			productName = Moya;
+		};
+		935ACB5A2BCDBCE600B7EB73 /* RxMoya */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 935ACB562BCDBCB600B7EB73 /* XCRemoteSwiftPackageReference "Moya" */;
+			productName = RxMoya;
+		};
 		9365FA0C2BC70F5D00B37B0F /* SnapKit */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 93122A022BC6E46400C0540F /* XCRemoteSwiftPackageReference "SnapKit" */;

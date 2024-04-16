@@ -96,9 +96,9 @@ class ListingViewController: UIViewController {
                 return section
             }
         }
-        //TEST
+        
         layout.register(SectionBackgroundView.self, forDecorationViewOfKind: "sectionBackground")
-        //TEST
+        
         
        
         
@@ -106,7 +106,7 @@ class ListingViewController: UIViewController {
     }
 }
 
-//TEST
+
 class SectionBackgroundView: UICollectionReusableView {
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -117,7 +117,7 @@ class SectionBackgroundView: UICollectionReusableView {
         fatalError("init(coder:) has not been implemented")
     }
 }
-//TEST
+
 
 
 
@@ -138,6 +138,7 @@ class SectionBackgroundView: UICollectionReusableView {
         func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath)
             cell.backgroundColor = .clear
+
             return cell
         }
     }

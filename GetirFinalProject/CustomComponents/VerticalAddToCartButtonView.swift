@@ -35,12 +35,9 @@ class VerticalAddToCartButtonView: UIView {
            setCornerRadius()
            configureShadow()
            
-           
-           
-          
-           
-           
        }
+    
+ 
     
     private func setCornerRadius(){
                 layer.cornerRadius = 8
