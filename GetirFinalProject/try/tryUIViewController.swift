@@ -10,9 +10,10 @@ import SnapKit
 import RxSwift
 
 class tryUIViewController: UIViewController {
-    var disposeBag = DisposeBag()
-    var products = [Product]()
     
+    var products = BehaviorSubject<[Product]>(value: [])
+    var disposeBag = DisposeBag()
+
     
     
     override func viewDidLoad() {
@@ -39,14 +40,19 @@ class tryUIViewController: UIViewController {
     }
     
     func fetchHorizontalProducts() {
-           ProductNetworkManager.shared.fetchHorizontalProducts { [weak self] (products, error) in
-               if let error = error {
-                   print("Error fetching horizontal products: \(error)")
-                   return
-               }
-               //TODO Handle fetched Items
-               self?.handleHorizontalProducts(products: products!)
-           }
+        ProductNetworkManager.shared.fetchProducts(service: .getVerticalProducts)
+                    .subscribe(onNext: { [weak self] products in
+                        guard let self = self else { return }
+                        self.products.onNext(products)  // Update BehaviorSubject
+                        self.handleHorizontalProducts(products: products)
+                    }, onError: { error in
+                        print(error.localizedDescription)
+                    }, onCompleted: {
+                        print("Completed fetching products")
+                    }, onDisposed: {
+                        print("Disposed")
+                    })
+                    .disposed(by: disposeBag)
        }
     
     func handleHorizontalProducts(products: [Product]){

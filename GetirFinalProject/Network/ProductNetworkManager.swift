@@ -20,34 +20,19 @@ struct ProductNetworkManager {
 
     
     
-    private func fetchProducts(service: ProductService, completion: @escaping ([Product]?, Error?) -> Void) {
-           provider.request(service) { result in
-               switch result {
-               case .success(let response):
-                   do {
-                       let results = try JSONDecoder().decode([WelcomeElement].self, from: response.data)
-                       let products = results.flatMap { $0.products ?? [] }
-                       completion(products, nil)
-                   } catch {
-                       print("Error decoding: \(error)")
-                       completion(nil, error)
-                   }
-               case .failure(let error):
-                   print("Error requesting data: \(error)")
-                   completion(nil, error)
-               }
-           }
-       }
+    func fetchProducts(service: ProductService) -> Observable<[Product]> {
+            return provider.rx.request(service)
+                .map { response in
+                    let results = try JSONDecoder().decode([WelcomeElement].self, from: response.data)
+                    return results.flatMap { $0.products ?? [] }
+                }
+                .asObservable()  // Convert Single to Observable
+                .catch { error in
+                    throw error
+                }
+        }
     
-    // Public method to fetch horizontal products.
-    func fetchHorizontalProducts(completion: @escaping ([Product]?, Error?) -> Void) {
-        fetchProducts(service: .getHorizontalProducts, completion: completion)
-    }
-
-    // Public method to fetch vertical products.
-    func fetchVerticalProducts(completion: @escaping ([Product]?, Error?) -> Void) {
-        fetchProducts(service: .getVerticalProducts, completion: completion)
-    }
+    
     
     
     
