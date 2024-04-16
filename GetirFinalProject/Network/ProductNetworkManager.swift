@@ -20,13 +20,12 @@ struct ProductNetworkManager {
 
     
     
-    func fetchProducts(service: ProductService) -> Observable<[Product]> {
+    func fetchProducts(service: ProductService) -> Single<[Product]> {
             return provider.rx.request(service)
                 .map { response in
                     let results = try JSONDecoder().decode([WelcomeElement].self, from: response.data)
                     return results.flatMap { $0.products ?? [] }
                 }
-                .asObservable()  // Convert Single to Observable
                 .catch { error in
                     throw error
                 }
@@ -40,4 +39,3 @@ struct ProductNetworkManager {
         }
     
     
-

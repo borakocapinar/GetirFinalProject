@@ -6,8 +6,9 @@
 //
 
 import UIKit
-
 import SnapKit
+import Kingfisher
+
 
 class ProductCollectionViewCell: UICollectionViewCell {
     
@@ -32,6 +33,7 @@ class ProductCollectionViewCell: UICollectionViewCell {
             label.font = CustomFont.openSansBold
             label.text = "₺0,00"
             label.textColor = CustomColor.getirPurple
+            
 
             return label
         }()
@@ -42,6 +44,7 @@ class ProductCollectionViewCell: UICollectionViewCell {
             label.font = CustomFont.openSansSemiBold
             label.text = "Product Name"
             label.textColor = CustomColor.textDark
+            label.numberOfLines = 0
             return label
         }()
         
@@ -51,6 +54,7 @@ class ProductCollectionViewCell: UICollectionViewCell {
             label.font = CustomFont.openSansSemiBold
             label.text = "Attribute"
             label.textColor = CustomColor.textSecondary
+            label.numberOfLines = 0
             return label
         }()
     
@@ -101,15 +105,37 @@ class ProductCollectionViewCell: UICollectionViewCell {
             nameLabel.snp.makeConstraints { make in
                 make.top.equalTo(priceLabel.snp.bottom).offset(2)
                 make.leading.equalTo(imageView.snp.leading)
+                make.trailing.equalTo(imageView.snp.trailing)
             }
             
             attributeLabel.snp.makeConstraints { make in
                 make.top.equalTo(nameLabel.snp.bottom).offset(2)
                 make.leading.equalTo(imageView.snp.leading)
+                
             }
             
            
         }
+    
+    func configure(with product: Product) {
+        // Set the image using Kingfisher
+        if let urlString = product.displayImageURL, let url = URL(string: urlString) {
+            imageView.kf.setImage(
+                with: url,
+                placeholder: UIImage(named: "placeholder"),
+                options: [
+                    .transition(.fade(0.2)),  // Fade transition with duration of 0.2 seconds
+                    .cacheOriginalImage  // Cache the original image
+                ])
+        } else {
+            imageView.image = UIImage(named: "placeholder")  // Fallback placeholder image
+        }
+        
+        // Set other properties
+        priceLabel.text = product.priceText ?? "₺\(product.price ?? 0.00)"
+        nameLabel.text = product.name ?? "Unknown Product"
+        attributeLabel.text = product.description ?? "No Description Available"
+    }
     
     
 }

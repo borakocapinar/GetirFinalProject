@@ -39,17 +39,79 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "32CB82FE-0BBF-403A-967A-D815A8F50950"
-            shouldBeEnabled = "No"
+            uuid = "CB5B3FBB-1290-41E6-B836-A6F58AD22250"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "GetirFinalProject/Model/Product.swift"
+            filePath = "GetirFinalProject/try/tryUIViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "32"
-            endingLineNumber = "32"
-            landmarkName = "displayImageURL"
-            landmarkType = "24">
+            startingLineNumber = "43"
+            endingLineNumber = "43"
+            landmarkName = "unknown"
+            landmarkType = "0">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "7D79A69C-D2BA-4E76-A1D6-F87F5F2C495F"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GetirFinalProject/try/tryUIViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "60"
+            endingLineNumber = "60"
+            landmarkName = "unknown"
+            landmarkType = "0">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "28FD93CB-78AB-437A-9EDD-BFEAAB0E5F9B"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GetirFinalProject/Network/test.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "39"
+            endingLineNumber = "39"
+            landmarkName = "fetchProducts(from:completion:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "28FD93CB-78AB-437A-9EDD-BFEAAB0E5F9B - 738033040b3bd629"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "GetirFinalProject.test.fetchProducts(from: Swift.String, completion: (Swift.Result&lt;Swift.Array&lt;GetirFinalProject.Product&gt;, Swift.Error&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "GetirFinalProject"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/borakocapinar/Developer/iOS/Getir%20IOS/GetirFinalProject/GetirFinalProject/Network/test.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "39"
+                  endingLineNumber = "39">
+               </Location>
+               <Location
+                  uuid = "28FD93CB-78AB-437A-9EDD-BFEAAB0E5F9B - 646e4f9867f46981"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Alamofire.DataResponse&lt;Swift.Array&lt;GetirFinalProject.WelcomeElement&gt;, Alamofire.AFError&gt;) -&gt; () in GetirFinalProject.test.fetchProducts(from: Swift.String, completion: (Swift.Result&lt;Swift.Array&lt;GetirFinalProject.Product&gt;, Swift.Error&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "GetirFinalProject"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/borakocapinar/Developer/iOS/Getir%20IOS/GetirFinalProject/GetirFinalProject/Network/test.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "39"
+                  endingLineNumber = "39">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
