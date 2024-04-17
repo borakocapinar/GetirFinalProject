@@ -14,6 +14,8 @@ class ListingViewController: UIViewController {
     var horizontalProducts = [Product]()
     var verticalProducts = [Product]()
     var disposeBag = DisposeBag()
+    var itemCounts: [String: Int] = [:]
+
 
    
     
@@ -79,13 +81,13 @@ class ListingViewController: UIViewController {
         let layout = UICollectionViewCompositionalLayout { (sectionIndex: Int, layoutEnvironment: NSCollectionLayoutEnvironment) -> NSCollectionLayoutSection? in
             if sectionIndex == 0 {
                 // First section layout (horizontal scrolling)
-                let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.20), heightDimension: .fractionalHeight(1))
+                let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1))
                 let item = NSCollectionLayoutItem(layoutSize: itemSize)
                 item.contentInsets = NSDirectionalEdgeInsets(top: 16, leading: 0, bottom: 16, trailing: 8)
-                let groupSize = NSCollectionLayoutSize(widthDimension: .estimated(556), heightDimension: .estimated(200))
+                let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.3) ,heightDimension: .estimated(220))
                 let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
                 let section = NSCollectionLayoutSection(group: group)
-                
+                section.interGroupSpacing = 16
                 let backgroundDecoration = NSCollectionLayoutDecorationItem.background(elementKind: "sectionBackground")
                             backgroundDecoration.contentInsets = NSDirectionalEdgeInsets(top: 16, leading: 0, bottom: 8, trailing: 0)
                             section.decorationItems = [backgroundDecoration]
@@ -95,17 +97,19 @@ class ListingViewController: UIViewController {
        
                 
 
-                section.contentInsets = NSDirectionalEdgeInsets(top: 16, leading: 16, bottom: 0, trailing: 8) // Added bottom padding, and top padding for spacing from the
+                section.contentInsets = NSDirectionalEdgeInsets(top: 16, leading: 16, bottom: 0, trailing: 8) 
                 
                 return section
             } else {
                 // Second section layout (vertical scrolling with 3 items in a row)
-                let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1/3), heightDimension: .fractionalHeight(1.0))
+                let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1.0))
                 let item = NSCollectionLayoutItem(layoutSize: itemSize)
-                item.contentInsets = NSDirectionalEdgeInsets(top: 8, leading: 0, bottom: 8, trailing: 16)
-                let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(200))
+                item.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 16)
+                let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1) ,heightDimension: .estimated(200))
                 let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitem: item, count: 3)
+                
                 let section = NSCollectionLayoutSection(group: group)
+                section.interGroupSpacing = 16
                 //TEST
                 let backgroundDecoration = NSCollectionLayoutDecorationItem.background(elementKind: "sectionBackground")
                             backgroundDecoration.contentInsets = NSDirectionalEdgeInsets(top: 8, leading: 0, bottom: 0, trailing: 0)
@@ -116,7 +120,7 @@ class ListingViewController: UIViewController {
                 
                 
                 //BAK BURAYA
-                section.contentInsets = NSDirectionalEdgeInsets(top: 16, leading: 16, bottom: 0, trailing: 0) // Added bottom padding, and top padding for spacing from the navigation controller
+                section.contentInsets = NSDirectionalEdgeInsets(top: 16, leading: 16, bottom: 0, trailing: 0)
                 
                 return section
             }
@@ -216,6 +220,18 @@ class SectionBackgroundView: UICollectionReusableView {
         
 
     }
+
+
+extension ListingViewController: ProductCollectionViewCellDelegate {
+    func getCount(for productId: String) -> Int {
+        return itemCounts[productId] ?? 0
+    }
+
+    func updateCount(for productId: String, count: Int) {
+        itemCounts[productId] = count
+       
+    }
+}
 
 
 

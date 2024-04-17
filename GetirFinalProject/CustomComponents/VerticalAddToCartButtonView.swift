@@ -183,6 +183,15 @@ class VerticalAddToCartButtonView: UIView {
            self.trashButton.isHidden = true
            
        }
+    
+    func resetState() {
+        count = 0
+        countLabel.isHidden = true
+        trashButton.isHidden = true
+        removeButton.isHidden = true
+        setAddButtonRadius()
+    }
+    
    }
 
     
