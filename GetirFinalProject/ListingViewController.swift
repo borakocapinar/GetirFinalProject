@@ -23,6 +23,16 @@ class ListingViewController: UIViewController {
         setupActivityIndicator()
         fetchProducts()
        //TEST
+        configureCollectionView()
+        setupNavigationBar()
+        self.view.bringSubviewToFront(activityIndicator)
+
+    }
+    
+    
+    
+    
+    private func setupNavigationBar(){
         self.navigationItem.title = "Ürünler"
         let basketButton = BasketButton()
         
@@ -34,22 +44,18 @@ class ListingViewController: UIViewController {
         
         let rightBarButtonItem = UIBarButtonItem(customView: basketButton)
         navigationItem.rightBarButtonItem = rightBarButtonItem
-        configureCollectionView()
-        
-        
-       
-    
     }
-    
-    
     
     
     private func setupActivityIndicator() {
             activityIndicator = UIActivityIndicatorView(style: .large)
             activityIndicator.center = self.view.center
+        activityIndicator.color = .black
             self.view.addSubview(activityIndicator)
             activityIndicator.startAnimating()
-        }
+            
+
+    }
     
     @objc func basketButtonTapped() {
         print("Button tapped")

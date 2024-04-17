@@ -128,13 +128,14 @@ class ProductCollectionViewCell: UICollectionViewCell {
                     .cacheOriginalImage  // Cache the original image
                 ])
         } else {
-            imageView.image = UIImage(named: "placeholder")  // Fallback placeholder image
+            imageView.image = UIImage(named: "itemIcon")  // Fallback placeholder image
         }
         
         // Set other properties
         priceLabel.text = product.priceText ?? "₺\(product.price ?? 0.00)"
-        nameLabel.text = product.name ?? "Unknown Product"
-        attributeLabel.text = product.description ?? "No Description Available"
+        nameLabel.text = product.name ?? ""
+        attributeLabel.text = product.description ?? ""
+        
     }
     
     
