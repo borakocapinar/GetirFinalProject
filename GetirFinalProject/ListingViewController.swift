@@ -8,7 +8,16 @@
 import UIKit
 import SnapKit
 import RxSwift
+
+protocol ListingViewControllerDelegate: AnyObject {
+    func fetchHorizontalProducts() -> [Product]
+    func fetchVerticalProducts() -> [Product]
+}
+
+
+
 class ListingViewController: UIViewController {
+    weak var delegate: ListingViewControllerDelegate?
     var collectionView : UICollectionView!
     var activityIndicator: UIActivityIndicatorView!
     var horizontalProducts = [Product]()
@@ -61,6 +70,8 @@ class ListingViewController: UIViewController {
     
     @objc func basketButtonTapped() {
         print("Button tapped")
+        let a = CartManager.shared.itemCounts
+        print("Test")
     }
     
     //MARK: - Compositional Layout
@@ -220,6 +231,18 @@ class SectionBackgroundView: UICollectionReusableView {
         
 
     }
+
+//MARK: - ListingViewControllerDelegate Extension
+
+extension ListingViewController: ListingViewControllerDelegate {
+    func fetchHorizontalProducts() -> [Product] {
+        return horizontalProducts
+    }
+
+    func fetchVerticalProducts() -> [Product] {
+        return verticalProducts
+    }
+}
 
 
 
