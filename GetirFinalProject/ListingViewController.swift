@@ -222,16 +222,7 @@ class SectionBackgroundView: UICollectionReusableView {
     }
 
 
-extension ListingViewController: ProductCollectionViewCellDelegate {
-    func getCount(for productId: String) -> Int {
-        return itemCounts[productId] ?? 0
-    }
 
-    func updateCount(for productId: String, count: Int) {
-        itemCounts[productId] = count
-       
-    }
-}
 
 
 

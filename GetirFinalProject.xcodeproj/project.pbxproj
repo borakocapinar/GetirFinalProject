@@ -15,6 +15,7 @@
 		935ACB5B2BCDBCE600B7EB73 /* RxMoya in Frameworks */ = {isa = PBXBuildFile; productRef = 935ACB5A2BCDBCE600B7EB73 /* RxMoya */; };
 		935ACB5D2BCDBD2F00B7EB73 /* ProductService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935ACB5C2BCDBD2F00B7EB73 /* ProductService.swift */; };
 		935ACB5F2BCDBD9E00B7EB73 /* ProductService+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935ACB5E2BCDBD9E00B7EB73 /* ProductService+Extension.swift */; };
+		936016112BD16E9200E1F743 /* CartManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 936016102BD16E9200E1F743 /* CartManager.swift */; };
 		9365FA0D2BC70F5D00B37B0F /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 9365FA0C2BC70F5D00B37B0F /* SnapKit */; };
 		9365FA122BC727DB00B37B0F /* OpenSans-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9365FA102BC727DA00B37B0F /* OpenSans-SemiBold.ttf */; };
 		9365FA132BC727DB00B37B0F /* OpenSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9365FA112BC727DA00B37B0F /* OpenSans-Bold.ttf */; };
@@ -56,6 +57,7 @@
 		935ACB542BCDBC5800B7EB73 /* ProductNetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductNetworkManager.swift; sourceTree = "<group>"; };
 		935ACB5C2BCDBD2F00B7EB73 /* ProductService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductService.swift; sourceTree = "<group>"; };
 		935ACB5E2BCDBD9E00B7EB73 /* ProductService+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProductService+Extension.swift"; sourceTree = "<group>"; };
+		936016102BD16E9200E1F743 /* CartManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartManager.swift; sourceTree = "<group>"; };
 		9365FA102BC727DA00B37B0F /* OpenSans-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-SemiBold.ttf"; sourceTree = "<group>"; };
 		9365FA112BC727DA00B37B0F /* OpenSans-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Bold.ttf"; sourceTree = "<group>"; };
 		9365FA142BC73ED600B37B0F /* ListingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListingViewController.swift; sourceTree = "<group>"; };
@@ -130,6 +132,7 @@
 			isa = PBXGroup;
 			children = (
 				935ACB512BCD97FC00B7EB73 /* Product.swift */,
+				936016102BD16E9200E1F743 /* CartManager.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -384,6 +387,7 @@
 				935ACB5D2BCDBD2F00B7EB73 /* ProductService.swift in Sources */,
 				9365FA172BC73EF000B37B0F /* ProductDetailViewController.swift in Sources */,
 				93A57F722BC5F2B10052BD01 /* AppDelegate.swift in Sources */,
+				936016112BD16E9200E1F743 /* CartManager.swift in Sources */,
 				935ACB552BCDBC5800B7EB73 /* ProductNetworkManager.swift in Sources */,
 				9338F5642BC96F3100843CCA /* StyleConstants.swift in Sources */,
 				93A57F742BC5F2B10052BD01 /* SceneDelegate.swift in Sources */,

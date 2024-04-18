@@ -10,13 +10,14 @@ import SnapKit
 
 class VerticalAddToCartButtonView: UIView {
 
+       
        private let addButton: UIButton
        private let countLabel: UILabel
        private let trashButton: UIButton
        private let removeButton: UIButton
-
+       var productId: String? = "0"
        
-       private var count: Int = 0 {
+        var count: Int = 0 {
            didSet {
                countLabel.text = "\(count)"
            }
@@ -49,14 +50,7 @@ class VerticalAddToCartButtonView: UIView {
            fatalError("init(coder:) has not been implemented")
        }
     
-    private func setAddButtonRadius(){
-        addButton.layer.cornerRadius = 8
-    }
-    
-    private func resetAddButtonRadius(){
-        addButton.layer.cornerRadius = 0
-        setCornerRadius()
-    }
+   
     
     private func setupAddButton(){
         addButton.backgroundColor = .white
@@ -151,46 +145,91 @@ class VerticalAddToCartButtonView: UIView {
    
     
        
-       @objc private func handleAddTap() {
-           resetAddButtonRadius()
-           print("add")
-           count += 1
-           if countLabel.isHidden{
-               countLabel.isHidden = false
-               trashButton.isHidden = false
-           }
-           if count > 1 {
-               trashButton.isHidden = true
-               removeButton.isHidden = false
-           }
-           
-       }
+//    @objc private func handleAddTap() {
+//           resetAddButtonRadius()
+//           count += 1
+//        updateVisibility()
+////           if countLabel.isHidden {
+////               countLabel.isHidden = false
+////               trashButton.isHidden = false
+////           }
+////           if count > 1 {
+////               trashButton.isHidden = true
+////               removeButton.isHidden = false
+////           }
+//       }
+//
+//       @objc private func handleRemoveTap() {
+//           count -= 1
+//           updateVisibility()
+////           if count == 1 {
+////               removeButton.isHidden = true
+////               trashButton.isHidden = false
+////           }
+//       }
+//
+//       @objc private func handleTrashTap() {
+//           setAddButtonRadius()
+//           count = 0
+//           updateVisibility()
+////           countLabel.isHidden = true
+////           trashButton.isHidden = true
+//       }
     
+    @objc private func handleAddTap() {
+        resetAddButtonRadius()
+        if let productId = productId {
+            CartManager.shared.incrementItemCount(for: productId)
+            count = CartManager.shared.count(for: productId)
+        }
+        updateButtonUI()
+    }
+
     @objc private func handleRemoveTap() {
-        print("remove")
-        count -= 1
-        
-        if count == 1 {
-            removeButton.isHidden = true
-            trashButton.isHidden = false
+        if let productId = productId {
+            CartManager.shared.decrementItemCount(for: productId)
+            count = CartManager.shared.count(for: productId)
+        }
+        updateButtonUI()
+    }
+
+    @objc private func handleTrashTap() {
+        setAddButtonRadius()
+        if let productId = productId {
+            CartManager.shared.removeItem(for: productId)
+            count = CartManager.shared.count(for: productId)
+        }
+        updateButtonUI()
+    }
+
+    
+    func updateButtonUI(){
+        updateVisibility()
+        if countLabel.isHidden && trashButton.isHidden && removeButton.isHidden{
+            setAddButtonRadius()
+        }
+        else{
+            resetAddButtonRadius()
         }
     }
-       
-       @objc private func handleTrashTap() {
-           setAddButtonRadius()
-           count = 0
-           self.countLabel.isHidden = true
-           self.trashButton.isHidden = true
-           
-       }
-    
-    func resetState() {
-        count = 0
-        countLabel.isHidden = true
-        trashButton.isHidden = true
-        removeButton.isHidden = true
-        setAddButtonRadius()
+     private func updateVisibility() {
+        countLabel.isHidden = count == 0
+        trashButton.isHidden = count <= 0 || count > 1
+        removeButton.isHidden = count <= 1
     }
+    
+    private func setAddButtonRadius(){
+        addButton.layer.cornerRadius = 8
+    }
+    
+    private func resetAddButtonRadius(){
+        addButton.layer.cornerRadius = 0
+        setCornerRadius()
+    }
+    
+    
+    
+    
     
    }
 

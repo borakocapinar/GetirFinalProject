@@ -10,15 +10,14 @@ import SnapKit
 import Kingfisher
 
 
-protocol ProductCollectionViewCellDelegate: AnyObject {
-    func getCount(for productId: String) -> Int
-    func updateCount(for productId: String, count: Int)
-}
+
 
 class ProductCollectionViewCell: UICollectionViewCell {
     
-    weak var delegate: ProductCollectionViewCellDelegate?
+    
     var productId: String?
+    
+   
     
     lazy var imageView: UIImageView = {
         let imageView = UIImageView()
@@ -129,36 +128,22 @@ class ProductCollectionViewCell: UICollectionViewCell {
     
     func configure(with product: Product) {
         
-        // Assuming productId is already a property of this cell
-            productId = product.id
-            
-//            // Get the current count for the product from the delegate
-//            let currentCount = delegate?.getCount(for: product.id ?? "0") ?? 0
-//            verticalAddToCartbuttonView.count = currentCount
+        // Set the image using Kingfisher
+        if let urlString = product.displayImageURL, let url = URL(string: urlString) {
+            imageView.kf.setImage(with: url, placeholder: UIImage(named: "placeholder"))
+        } else {
+            imageView.image = UIImage(named: "itemIcon")  // Fallback placeholder image
+        }
 
-            // Set the image using Kingfisher
-            if let urlString = product.displayImageURL, let url = URL(string: urlString) {
-                imageView.kf.setImage(
-                    with: url,
-                    placeholder: UIImage(named: "placeholder"),
-                    options: [
-                        .transition(.fade(0.2)),  // Fade transition with duration of 0.2 seconds
-                        .cacheOriginalImage  // Cache the original image
-                    ])
-            } else {
-                imageView.image = UIImage(named: "itemIcon")  // Fallback placeholder image
-            }
-            
-            // Set other properties
-            priceLabel.text = product.priceText ?? "₺\(product.price ?? 0.00)"
-            nameLabel.text = product.name ?? ""
-            attributeLabel.text = product.description ?? ""
-//
-//            // Configure the block to handle changes in the count
-//            verticalAddToCartbuttonView.onCountChanged = { [weak self] newCount in
-//                guard let self = self, let productId = self.productId else { return }
-//                self.delegate?.updateCount(for: productId, count: newCount)
-            }
+        // Set other properties
+        priceLabel.text = product.priceText
+        nameLabel.text = product.name
+        attributeLabel.text = product.description
+        let productId = product.id ?? "0"
+        verticalAddToCartbuttonView.count = CartManager.shared.count(for: productId)
+        verticalAddToCartbuttonView.productId = productId
+        verticalAddToCartbuttonView.updateButtonUI()
+    }
         
         
     }
