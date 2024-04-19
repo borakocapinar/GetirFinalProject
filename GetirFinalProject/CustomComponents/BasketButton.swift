@@ -54,7 +54,7 @@ class BasketButton: UIButton {
         
         label = UILabel()
         label.text = "₺0,00"
-        label.font = CustomFont.openSansBold
+        label.font = CustomFont.openSansBold14
         label.textColor = CustomColor.getirPurple
         label.textAlignment = .center
         labelView.addSubview(label)

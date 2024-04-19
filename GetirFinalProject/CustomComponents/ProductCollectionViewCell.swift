@@ -35,7 +35,7 @@ class ProductCollectionViewCell: UICollectionViewCell {
     lazy var priceLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .left
-        label.font = CustomFont.openSansBold
+        label.font = CustomFont.openSansBold14
         label.text = "₺0,00"
         label.textColor = CustomColor.getirPurple
         label.numberOfLines = 0
@@ -47,7 +47,7 @@ class ProductCollectionViewCell: UICollectionViewCell {
     lazy var nameLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .left
-        label.font = CustomFont.openSansSemiBold
+        label.font = CustomFont.openSansSemiBold12
         label.text = "Product Name"
         label.textColor = CustomColor.textDark
         label.numberOfLines = 2
@@ -58,7 +58,7 @@ class ProductCollectionViewCell: UICollectionViewCell {
     lazy var attributeLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .left
-        label.font = CustomFont.openSansSemiBold
+        label.font = CustomFont.openSansSemiBold12
         label.text = "Attribute"
         label.textColor = CustomColor.textSecondary
         label.numberOfLines = 0

@@ -74,7 +74,7 @@ class VerticalAddToCartButtonView: UIView {
     
     private func setupCountLabel(){
         countLabel.backgroundColor = CustomColor.getirPurple
-        countLabel.font = CustomFont.openSansBold
+        countLabel.font = CustomFont.openSansBold14
         countLabel.textColor = .white
         countLabel.textAlignment = .center
         countLabel.isHidden = true // Hide initially

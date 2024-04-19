@@ -127,6 +127,7 @@ class ListingViewController: UIViewController {
         // Register cell classes
         collectionView.register(ProductCollectionViewCell.self, forCellWithReuseIdentifier: "cell")
         collectionView.dataSource = self
+        collectionView.delegate = self
         
      
         
@@ -276,6 +277,20 @@ class SectionBackgroundView: UICollectionReusableView {
         
 
     }
+
+//MARK: - UICollectionViewDelegate Extension
+
+extension ListingViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let product = (indexPath.section == 0) ? horizontalProducts[indexPath.item] : verticalProducts[indexPath.item]
+        
+        let detailVC = ProductDetailViewController()
+        detailVC.product = product  
+        
+        navigationController?.pushViewController(detailVC, animated: true)
+    }
+}
+
 
 //MARK: - ListingViewControllerDelegate Extension
 
