@@ -9,8 +9,10 @@ import UIKit
 import SnapKit
 
 class BasketButton: UIButton {
-
     
+    private var label: UILabel!
+    private var labelView: UIView!
+    private var buttonImageView: UIView!
    
     init() {
         super.init(frame: .zero)
@@ -27,45 +29,32 @@ class BasketButton: UIButton {
         layer.cornerRadius = 8
         layer.borderWidth = 1
         layer.borderColor = UIColor.white.cgColor
-        setupImageView()
         setupLabelView()
+        setupImageView()
+        
+        snp.makeConstraints { make in
+               make.right.equalTo(labelView.snp.right) 
+               make.left.equalTo(buttonImageView.snp.left)
+               make.top.equalTo(labelView.snp.top)
+               make.bottom.equalTo(labelView.snp.bottom)
+           }
         }
     
     
     
-    private func setupImageView(){
-        let imageView = UIView()
-        imageView.backgroundColor = .white
-        imageView.layer.cornerRadius = super.layer.cornerRadius
-        imageView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMinXMaxYCorner]
-        imageView.layer.masksToBounds = true
-        imageView.isUserInteractionEnabled = false
-        
-        
-        let image = UIImageView(image: UIImage(named: "basketIcon"))
-        imageView.addSubview(image)
-        
-        self.addSubview(imageView)
-        
-        imageView.snp.makeConstraints { make in
-            make.left.top.bottom.equalToSuperview()
-            
-            make.width.equalTo(34)
-        }
-    }
+  
     
     private func setupLabelView(){
         // Create a view for the label
-        let labelView = UIView()
+        labelView = UIView()
         labelView.backgroundColor = CustomColor.primarySubtitle
         labelView.layer.cornerRadius = super.layer.cornerRadius
         labelView.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMaxXMaxYCorner]
         labelView.isUserInteractionEnabled = false
         
-        let label = UILabel()
+        label = UILabel()
         label.text = "₺0,00"
-        guard let font = UIFont(name: "OpenSans-Bold", size: 14.0) else{return}
-        label.font = font
+        label.font = CustomFont.openSansBold
         label.textColor = CustomColor.getirPurple
         label.textAlignment = .center
         labelView.addSubview(label)
@@ -74,16 +63,50 @@ class BasketButton: UIButton {
         
         
         labelView.snp.makeConstraints { make in
-            make.right.top.bottom.equalToSuperview()
-            make.width.equalTo(57)
-        }
-        
-        label.snp.makeConstraints { make in
-            make.centerX.centerY.equalToSuperview()
-            make.width.equalTo(37)
-        }
-        
+                make.right.top.bottom.equalToSuperview()
+            }
+            
+            label.snp.makeConstraints { make in
+                make.centerX.centerY.equalToSuperview()
+                make.edges.equalToSuperview().inset(UIEdgeInsets(top: 10, left: 7, bottom: 10, right: 7))
+            }
     }
+    
+    private func setupImageView(){
+        buttonImageView = UIView()
+        buttonImageView.backgroundColor = .white
+        buttonImageView.layer.cornerRadius = super.layer.cornerRadius
+        buttonImageView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMinXMaxYCorner]
+        buttonImageView.layer.masksToBounds = true
+        buttonImageView.isUserInteractionEnabled = false
+        
+        
+        let image = UIImageView(image: UIImage(named: "basketIcon"))
+        image.contentMode = .center
+        buttonImageView.addSubview(image)
+        
+        image.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+            
+           }
+        
+        self.addSubview(buttonImageView)
+        
+        buttonImageView.snp.makeConstraints { make in
+            make.right.equalTo(labelView.snp.left)
+            make.height.equalTo(labelView.snp.height)
+            
+        }
+       
+    }
+    
+    func setCartLabel(price: Double){
+        let formattedPrice = String(format: "₺%.2f", price)
+        label.text = formattedPrice
+    }
+
+    
+    
     
     //MARK: - Button Animation
     

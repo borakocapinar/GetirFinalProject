@@ -126,7 +126,12 @@ class ProductCollectionViewCell: UICollectionViewCell {
         
     }
     
-    func configure(with product: Product) {
+    override func prepareForReuse() {
+            super.prepareForReuse()
+            verticalAddToCartbuttonView.cartItemCountDelegate = nil
+        }
+    
+    func configure(withDelegate delegate: CartItemCountDelegate, product: Product) {
         
         // Set the image using Kingfisher
         if let urlString = product.displayImageURL, let url = URL(string: urlString) {
@@ -140,7 +145,8 @@ class ProductCollectionViewCell: UICollectionViewCell {
         nameLabel.text = product.name
         attributeLabel.text = product.description
         let productId = product.id ?? "0"
-        verticalAddToCartbuttonView.count = CartManager.shared.count(for: productId)
+        verticalAddToCartbuttonView.cartItemCountDelegate = delegate
+        verticalAddToCartbuttonView.count = delegate.count(for: productId)
         verticalAddToCartbuttonView.productId = productId
         verticalAddToCartbuttonView.updateButtonUI()
     }

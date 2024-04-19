@@ -10,7 +10,7 @@ import SnapKit
 
 class VerticalAddToCartButtonView: UIView {
 
-       
+       weak var cartItemCountDelegate: CartItemCountDelegate?
        private let addButton: UIButton
        private let countLabel: UILabel
        private let trashButton: UIButton
@@ -24,6 +24,7 @@ class VerticalAddToCartButtonView: UIView {
        }
        
        override init(frame: CGRect) {
+           
            addButton = UIButton(type: .system)
            countLabel = UILabel()
            trashButton = UIButton(type: .system)
@@ -144,61 +145,31 @@ class VerticalAddToCartButtonView: UIView {
         }
    
     
-       
-//    @objc private func handleAddTap() {
-//           resetAddButtonRadius()
-//           count += 1
-//        updateVisibility()
-////           if countLabel.isHidden {
-////               countLabel.isHidden = false
-////               trashButton.isHidden = false
-////           }
-////           if count > 1 {
-////               trashButton.isHidden = true
-////               removeButton.isHidden = false
-////           }
-//       }
-//
-//       @objc private func handleRemoveTap() {
-//           count -= 1
-//           updateVisibility()
-////           if count == 1 {
-////               removeButton.isHidden = true
-////               trashButton.isHidden = false
-////           }
-//       }
-//
-//       @objc private func handleTrashTap() {
-//           setAddButtonRadius()
-//           count = 0
-//           updateVisibility()
-////           countLabel.isHidden = true
-////           trashButton.isHidden = true
-//       }
+ 
     
     @objc private func handleAddTap() {
         resetAddButtonRadius()
-        if let productId = productId {
-            CartManager.shared.incrementItemCount(for: productId)
-            count = CartManager.shared.count(for: productId)
-        }
+        if let productId = productId, let delegate = cartItemCountDelegate {
+                   delegate.incrementItemCount(for: productId)
+                   count = delegate.count(for: productId)
+               }
         updateButtonUI()
     }
 
     @objc private func handleRemoveTap() {
-        if let productId = productId {
-            CartManager.shared.decrementItemCount(for: productId)
-            count = CartManager.shared.count(for: productId)
-        }
+        if let productId = productId, let delegate = cartItemCountDelegate {
+                   delegate.decrementItemCount(for: productId)
+                   count = delegate.count(for: productId)
+               }
         updateButtonUI()
     }
 
     @objc private func handleTrashTap() {
         setAddButtonRadius()
-        if let productId = productId {
-            CartManager.shared.removeItem(for: productId)
-            count = CartManager.shared.count(for: productId)
-        }
+        if let productId = productId, let delegate = cartItemCountDelegate {
+                   delegate.removeItem(for: productId)
+                   count = delegate.count(for: productId)
+               }
         updateButtonUI()
     }
 

@@ -94,8 +94,8 @@
             filePath = "GetirFinalProject/CustomComponents/ProductCollectionViewCell.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "147"
-            endingLineNumber = "147"
+            startingLineNumber = "153"
+            endingLineNumber = "153"
             landmarkName = "ProductCollectionViewCell"
             landmarkType = "3">
          </BreakpointContent>
@@ -119,16 +119,32 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "E9A27401-F1B3-489F-B6F3-B9AFEC20ADE9"
-            shouldBeEnabled = "Yes"
+            uuid = "C21BBD53-1158-4D2C-A107-2C86DB62709E"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "GetirFinalProject/ListingViewController.swift"
+            filePath = "GetirFinalProject/Model/CartManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "74"
-            endingLineNumber = "74"
-            landmarkName = "basketButtonTapped()"
+            startingLineNumber = "17"
+            endingLineNumber = "17"
+            landmarkName = "incrementItemCount(for:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "0DA83A04-1BD6-4277-9945-81A2A6C8041D"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GetirFinalProject/CustomComponents/VerticalAddToCartButtonView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "151"
+            endingLineNumber = "151"
+            landmarkName = "handleAddTap()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

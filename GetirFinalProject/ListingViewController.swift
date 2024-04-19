@@ -15,6 +15,14 @@ protocol ListingViewControllerDelegate: AnyObject {
 }
 
 
+protocol CartItemCountDelegate: AnyObject {
+    func incrementItemCount(for productId: String)
+    func decrementItemCount(for productId: String)
+    func removeItem(for productId: String)
+    func count(for productId: String) -> Int
+}
+
+
 
 class ListingViewController: UIViewController {
     weak var delegate: ListingViewControllerDelegate?
@@ -23,17 +31,23 @@ class ListingViewController: UIViewController {
     var horizontalProducts = [Product]()
     var verticalProducts = [Product]()
     var disposeBag = DisposeBag()
-    var itemCounts: [String: Int] = [:]
-
+    
+    
+    var totalPrice: Double = 0.0
+       
+    var itemCounts: [String: Int] = [:] {
+        didSet {
+            calculateTotalPrice()
+            updateBasketButton()
+        }
+    }
 
    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-       //TEST
         setupActivityIndicator()
         fetchProducts()
-       //TEST
         configureCollectionView()
         setupNavigationBar()
         self.view.bringSubviewToFront(activityIndicator)
@@ -47,15 +61,46 @@ class ListingViewController: UIViewController {
         self.navigationItem.title = "Ürünler"
         let basketButton = BasketButton()
         
-        basketButton.snp.makeConstraints { make in
-            make.width.equalTo(91)
-            make.height.equalTo(34)
-        }
-        basketButton.addTarget(self, action: #selector(basketButtonTapped), for: .touchUpInside)
+       
         
+        basketButton.addTarget(self, action: #selector(basketButtonTapped), for: .touchUpInside)
+        basketButton.isHidden = true
+       
+
         let rightBarButtonItem = UIBarButtonItem(customView: basketButton)
         navigationItem.rightBarButtonItem = rightBarButtonItem
+        
     }
+   
+    
+    
+    private func updateBasketButton() {
+        guard let basketButton = self.navigationItem.rightBarButtonItem?.customView as? BasketButton else {
+            return
+        }
+        
+        basketButton.isHidden = totalPrice > 0.0 ? false : true
+        
+        basketButton.setCartLabel(price: totalPrice)
+    }
+    
+    
+    private func calculateTotalPrice() {
+        totalPrice = 0.0
+
+        for (productId, quantity) in itemCounts {
+            if let product = (horizontalProducts + verticalProducts).first(where: { $0.id == productId }) {
+                totalPrice += Double(quantity) * (product.price ?? 0)
+            }
+        }
+    }
+
+    
+    
+    
+    
+    
+    
     
     
     private func setupActivityIndicator() {
@@ -70,8 +115,7 @@ class ListingViewController: UIViewController {
     
     @objc func basketButtonTapped() {
         print("Button tapped")
-        let a = CartManager.shared.itemCounts
-        print("Test")
+       
     }
     
     //MARK: - Compositional Layout
@@ -225,7 +269,8 @@ class SectionBackgroundView: UICollectionReusableView {
               // Determine the correct array based on the section
               let product = (indexPath.section == 0) ? horizontalProducts[indexPath.item] : verticalProducts[indexPath.item]
               
-              cell.configure(with: product)
+              
+              cell.configure(withDelegate: self, product: product)
               return cell
           }
         
@@ -243,6 +288,31 @@ extension ListingViewController: ListingViewControllerDelegate {
         return verticalProducts
     }
 }
+
+//MARK: - CartItemCountDelegate Extension
+extension ListingViewController: CartItemCountDelegate {
+    func incrementItemCount(for productId: String) {
+        itemCounts[productId, default: 0] += 1
+    }
+
+    func decrementItemCount(for productId: String) {
+        let currentCount = itemCounts[productId, default: 0]
+        if currentCount > 1 {
+            itemCounts[productId] = currentCount - 1
+        } else {
+            itemCounts.removeValue(forKey: productId)
+        }
+    }
+
+    func removeItem(for productId: String) {
+        itemCounts.removeValue(forKey: productId)
+    }
+
+    func count(for productId: String) -> Int {
+        return itemCounts[productId, default: 0]
+    }
+}
+
 
 
 
