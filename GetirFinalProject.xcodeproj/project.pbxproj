@@ -20,8 +20,8 @@
 		9365FA132BC727DB00B37B0F /* OpenSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9365FA112BC727DA00B37B0F /* OpenSans-Bold.ttf */; };
 		9365FA152BC73ED600B37B0F /* ListingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9365FA142BC73ED600B37B0F /* ListingViewController.swift */; };
 		9365FA172BC73EF000B37B0F /* ProductDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9365FA162BC73EF000B37B0F /* ProductDetailViewController.swift */; };
-		9365FA192BC73F0000B37B0F /* BasketViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9365FA182BC73F0000B37B0F /* BasketViewController.swift */; };
-		9365FA1C2BC750A300B37B0F /* BasketButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9365FA1B2BC750A300B37B0F /* BasketButton.swift */; };
+		9365FA192BC73F0000B37B0F /* CartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9365FA182BC73F0000B37B0F /* CartViewController.swift */; };
+		9365FA1C2BC750A300B37B0F /* CartButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9365FA1B2BC750A300B37B0F /* CartButton.swift */; };
 		938736E02BC863CD006ABE58 /* ProductCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 938736DF2BC863CD006ABE58 /* ProductCollectionViewCell.swift */; };
 		938736E42BC88A93006ABE58 /* tryUIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 938736E32BC88A93006ABE58 /* tryUIViewController.swift */; };
 		938736E82BC8AE0C006ABE58 /* VerticalAddToCartButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 938736E72BC8AE0C006ABE58 /* VerticalAddToCartButtonView.swift */; };
@@ -60,8 +60,8 @@
 		9365FA112BC727DA00B37B0F /* OpenSans-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Bold.ttf"; sourceTree = "<group>"; };
 		9365FA142BC73ED600B37B0F /* ListingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListingViewController.swift; sourceTree = "<group>"; };
 		9365FA162BC73EF000B37B0F /* ProductDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailViewController.swift; sourceTree = "<group>"; };
-		9365FA182BC73F0000B37B0F /* BasketViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasketViewController.swift; sourceTree = "<group>"; };
-		9365FA1B2BC750A300B37B0F /* BasketButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasketButton.swift; sourceTree = "<group>"; };
+		9365FA182BC73F0000B37B0F /* CartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartViewController.swift; sourceTree = "<group>"; };
+		9365FA1B2BC750A300B37B0F /* CartButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartButton.swift; sourceTree = "<group>"; };
 		938736DF2BC863CD006ABE58 /* ProductCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCollectionViewCell.swift; sourceTree = "<group>"; };
 		938736E32BC88A93006ABE58 /* tryUIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tryUIViewController.swift; sourceTree = "<group>"; };
 		938736E72BC8AE0C006ABE58 /* VerticalAddToCartButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerticalAddToCartButtonView.swift; sourceTree = "<group>"; };
@@ -156,7 +156,7 @@
 			children = (
 				9365FA162BC73EF000B37B0F /* ProductDetailViewController.swift */,
 				9365FA142BC73ED600B37B0F /* ListingViewController.swift */,
-				9365FA182BC73F0000B37B0F /* BasketViewController.swift */,
+				9365FA182BC73F0000B37B0F /* CartViewController.swift */,
 			);
 			name = Scene;
 			sourceTree = "<group>";
@@ -164,7 +164,7 @@
 		938736DE2BC8382E006ABE58 /* CustomComponents */ = {
 			isa = PBXGroup;
 			children = (
-				9365FA1B2BC750A300B37B0F /* BasketButton.swift */,
+				9365FA1B2BC750A300B37B0F /* CartButton.swift */,
 				938736DF2BC863CD006ABE58 /* ProductCollectionViewCell.swift */,
 				938736E72BC8AE0C006ABE58 /* VerticalAddToCartButtonView.swift */,
 			);
@@ -375,7 +375,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				938736E42BC88A93006ABE58 /* tryUIViewController.swift in Sources */,
-				9365FA192BC73F0000B37B0F /* BasketViewController.swift in Sources */,
+				9365FA192BC73F0000B37B0F /* CartViewController.swift in Sources */,
 				9365FA152BC73ED600B37B0F /* ListingViewController.swift in Sources */,
 				935ACB5F2BCDBD9E00B7EB73 /* ProductService+Extension.swift in Sources */,
 				938736E82BC8AE0C006ABE58 /* VerticalAddToCartButtonView.swift in Sources */,
@@ -387,7 +387,7 @@
 				935ACB552BCDBC5800B7EB73 /* ProductNetworkManager.swift in Sources */,
 				9338F5642BC96F3100843CCA /* StyleConstants.swift in Sources */,
 				93A57F742BC5F2B10052BD01 /* SceneDelegate.swift in Sources */,
-				9365FA1C2BC750A300B37B0F /* BasketButton.swift in Sources */,
+				9365FA1C2BC750A300B37B0F /* CartButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

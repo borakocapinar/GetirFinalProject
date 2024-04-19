@@ -59,7 +59,7 @@ class ListingViewController: UIViewController {
     
     private func setupNavigationBar(){
         self.navigationItem.title = "Ürünler"
-        let basketButton = BasketButton()
+        let basketButton = CartButton()
         
        
         
@@ -75,7 +75,7 @@ class ListingViewController: UIViewController {
     
     
     private func updateBasketButton() {
-        guard let basketButton = self.navigationItem.rightBarButtonItem?.customView as? BasketButton else {
+        guard let basketButton = self.navigationItem.rightBarButtonItem?.customView as? CartButton else {
             return
         }
         

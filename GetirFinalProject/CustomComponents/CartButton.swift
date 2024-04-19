@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-class BasketButton: UIButton {
+class CartButton: UIButton {
     
     private var label: UILabel!
     private var labelView: UIView!
