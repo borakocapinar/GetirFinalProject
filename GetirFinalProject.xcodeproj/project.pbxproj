@@ -151,14 +151,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		938736DD2BC83810006ABE58 /* Scene */ = {
+		936948592BD2D0A4002B9B12 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
 				9365FA162BC73EF000B37B0F /* ProductDetailViewController.swift */,
 				9365FA142BC73ED600B37B0F /* ListingViewController.swift */,
 				9365FA182BC73F0000B37B0F /* CartViewController.swift */,
 			);
-			name = Scene;
+			path = Controller;
 			sourceTree = "<group>";
 		};
 		938736DE2BC8382E006ABE58 /* CustomComponents */ = {
@@ -209,8 +209,8 @@
 				938736E12BC88A6F006ABE58 /* try */,
 				938736DE2BC8382E006ABE58 /* CustomComponents */,
 				93122A072BC70D2800C0540F /* SupportingFiles */,
-				938736DD2BC83810006ABE58 /* Scene */,
 				9338F5632BC96F3100843CCA /* StyleConstants.swift */,
+				936948592BD2D0A4002B9B12 /* Controller */,
 			);
 			path = GetirFinalProject;
 			sourceTree = "<group>";
