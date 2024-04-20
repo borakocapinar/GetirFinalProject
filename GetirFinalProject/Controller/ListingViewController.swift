@@ -38,7 +38,7 @@ class ListingViewController: UIViewController {
     var itemCounts: [String: Int] = [:] {
         didSet {
             calculateTotalPrice()
-            updateBasketButton()
+            updateCartButton()
         }
     }
 
@@ -59,29 +59,29 @@ class ListingViewController: UIViewController {
     
     private func setupNavigationBar(){
         self.navigationItem.title = "Ürünler"
-        let basketButton = CartButton()
+        let cartButton = CartButton()
         
        
         
-        basketButton.addTarget(self, action: #selector(basketButtonTapped), for: .touchUpInside)
-        basketButton.isHidden = true
+        cartButton.addTarget(self, action: #selector(cartButtonTapped), for: .touchUpInside)
+        cartButton.isHidden = true
        
 
-        let rightBarButtonItem = UIBarButtonItem(customView: basketButton)
+        let rightBarButtonItem = UIBarButtonItem(customView: cartButton)
         navigationItem.rightBarButtonItem = rightBarButtonItem
         
     }
    
     
     
-    private func updateBasketButton() {
-        guard let basketButton = self.navigationItem.rightBarButtonItem?.customView as? CartButton else {
+    private func updateCartButton() {
+        guard let cartButton = self.navigationItem.rightBarButtonItem?.customView as? CartButton else {
             return
         }
         
-        basketButton.isHidden = totalPrice > 0.0 ? false : true
+        cartButton.isHidden = totalPrice > 0.0 ? false : true
         
-        basketButton.setCartLabel(price: totalPrice)
+        cartButton.setCartLabel(price: totalPrice)
     }
     
     
@@ -113,8 +113,10 @@ class ListingViewController: UIViewController {
 
     }
     
-    @objc func basketButtonTapped() {
-        print("Button tapped")
+    @objc func cartButtonTapped() {
+        let cartVC = CartViewController()
+        
+        navigationController?.pushViewController(cartVC, animated: true)
        
     }
     

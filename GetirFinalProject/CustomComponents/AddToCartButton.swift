@@ -8,13 +8,14 @@
 import UIKit
 import SnapKit
 
-class VerticalAddToCartButtonView: UIView {
+class AddToCartButton: UIView {
 
        weak var cartItemCountDelegate: CartItemCountDelegate?
        private let addButton: UIButton
        private let countLabel: UILabel
        private let trashButton: UIButton
        private let removeButton: UIButton
+    private let stackView: UIStackView = UIStackView()
        var productId: String? = "0"
        
         var count: Int = 0 {
@@ -23,21 +24,72 @@ class VerticalAddToCartButtonView: UIView {
            }
        }
        
-       override init(frame: CGRect) {
-           
-           addButton = UIButton(type: .system)
-           countLabel = UILabel()
-           trashButton = UIButton(type: .system)
-           removeButton = UIButton(type: .system)
-           super.init(frame: frame)
-           self.setupAddButton()
-           self.setupCountLabel()
-           self.setupTrashButton()
-           self.setupRemoveButton()
-           setCornerRadius()
-           configureShadow()
+        init(frame: CGRect, axis: NSLayoutConstraint.Axis) {
+            addButton = UIButton(type: .system)
+            countLabel = UILabel()
+            trashButton = UIButton(type: .system)
+            removeButton = UIButton(type: .system)
+            super.init(frame: frame)
+            setupStackView(axis: axis) // Setup the stack view with the specified axis
+            setCornerRadius()
+            configureShadow()
+            
            
        }
+    
+    private func setupStackView(axis: NSLayoutConstraint.Axis) {
+            stackView.axis = axis
+            stackView.distribution = .fillEqually
+            stackView.spacing = 0
+            addSubview(addButton)
+        
+            if axis == .horizontal {
+                // Order for horizontal: removeButton, countLabel, addButton
+    
+                addButton.snp.makeConstraints { make in
+                    make.top.equalToSuperview()
+                    make.right.bottom.equalToSuperview()
+                }
+                
+                stackView.addArrangedSubview(removeButton)
+                stackView.addArrangedSubview(trashButton) 
+                stackView.addArrangedSubview(countLabel)
+                
+                addSubview(stackView)
+            stackView.snp.makeConstraints { make in
+                make.top.bottom.left.equalToSuperview()
+                make.right.equalTo(addButton.snp.left)
+                
+            }
+            
+            } else {
+                // Order for vertical: addButton, countLabel, removeButton
+                
+                    addButton.snp.makeConstraints { make in
+                        make.top.equalToSuperview()
+                        make.right.left.equalToSuperview()
+                    }
+                    
+                    stackView.addArrangedSubview(countLabel)
+                    stackView.addArrangedSubview(removeButton)
+                    stackView.addArrangedSubview(trashButton)
+                    
+                    addSubview(stackView)
+                
+                    stackView.snp.makeConstraints { make in
+                    make.top.equalTo(addButton.snp.bottom)
+                    make.right.left.equalToSuperview()
+                    make.bottom.equalToSuperview()
+                }
+
+            }
+        
+            setupAddButton()
+            setupCountLabel()
+            setupRemoveButton()
+            setupTrashButton()
+        }
+
     
  
     
@@ -59,17 +111,13 @@ class VerticalAddToCartButtonView: UIView {
         addButton.imageView?.contentMode = .scaleAspectFit
         setAddButtonRadius()
         addButton.addTarget(self, action: #selector(handleAddTap), for: .touchUpInside)
-        addSubview(addButton)
         
         addButton.snp.makeConstraints { make in
-                    make.top.equalToSuperview()
-                    make.left.right.equalToSuperview()
-                    make.height.equalTo(32)
-            make.width.equalTo(addButton.snp.height)
-                    
-                }
+            make.width.height.equalTo(32)
+            
+        }
+        
     }
-    
     
     
     private func setupCountLabel(){
@@ -78,15 +126,11 @@ class VerticalAddToCartButtonView: UIView {
         countLabel.textColor = .white
         countLabel.textAlignment = .center
         countLabel.isHidden = true // Hide initially
-        addSubview(countLabel)
         
         countLabel.snp.makeConstraints { make in
-                  make.top.equalTo(addButton.snp.bottom)
-                  make.left.right.equalToSuperview()
-            make.height.equalTo(32).priority(.high)
-            make.width.equalTo(countLabel.snp.height)
-                  
-              }
+            make.width.height.equalTo(32)
+        }
+        
     }
     
     private func setupTrashButton(){
@@ -94,18 +138,11 @@ class VerticalAddToCartButtonView: UIView {
          trashButton.setImage(UIImage(named: "trashIcon"), for: .normal)
          trashButton.addTarget(self, action: #selector(handleTrashTap), for: .touchUpInside)
          trashButton.isHidden = true // Hide initially
-         addSubview(trashButton)
-        
         
         trashButton.snp.makeConstraints { make in
-                    make.top.equalTo(countLabel.snp.bottom)
-                    make.left.right.equalToSuperview()
-                    make.height.equalTo(32)
-            make.width.equalTo(trashButton.snp.height)
-                    make.bottom.equalToSuperview()
-
-                   
-                }
+            make.width.height.equalTo(32)
+        }
+       
     }
     
     private func setupRemoveButton(){
@@ -113,16 +150,11 @@ class VerticalAddToCartButtonView: UIView {
         removeButton.setImage(UIImage(named: "removeIcon"), for: .normal)
         removeButton.addTarget(self, action: #selector(handleRemoveTap), for: .touchUpInside)
         removeButton.isHidden = true
-        addSubview(removeButton)
         
         removeButton.snp.makeConstraints { make in
-                    make.top.equalTo(countLabel.snp.bottom)
-                    make.left.right.equalToSuperview()
-                    make.height.equalTo(32)
-            make.width.equalTo(removeButton.snp.height)
-            make.bottom.equalToSuperview()
-                    
-                }
+            make.width.height.equalTo(32)
+        }
+        
     }
     
     private func configureShadow() {
@@ -148,6 +180,7 @@ class VerticalAddToCartButtonView: UIView {
  
     
     @objc private func handleAddTap() {
+
         if let productId = productId, let delegate = cartItemCountDelegate {
                    delegate.incrementItemCount(for: productId)
                    count = delegate.count(for: productId)
@@ -196,10 +229,6 @@ class VerticalAddToCartButtonView: UIView {
         addButton.layer.cornerRadius = 0
         setCornerRadius()
     }
-    
-    
-    
-    
     
    }
 

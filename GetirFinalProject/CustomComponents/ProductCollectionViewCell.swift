@@ -65,8 +65,8 @@ class ProductCollectionViewCell: UICollectionViewCell {
         return label
     }()
     
-    lazy var verticalAddToCartbuttonView : VerticalAddToCartButtonView = {
-        let button = VerticalAddToCartButtonView()
+    lazy var verticalAddToCartbuttonView : AddToCartButton = {
+        let button = AddToCartButton(frame: .zero, axis: .vertical)
         return button
     }()
     
