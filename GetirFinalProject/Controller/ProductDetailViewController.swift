@@ -13,6 +13,7 @@ class ProductDetailViewController: UIViewController {
     
     
     var product: Product!
+    weak var cartItemCountDelegate : CartItemCountDelegate?
     private let containerView = UIView()
     private let imageView = UIImageView()
     private let stackView = UIStackView()
@@ -21,6 +22,7 @@ class ProductDetailViewController: UIViewController {
     private let attributeLabel = UILabel()
     private let bottomUIView = BottomUIView()
     private let detailPageAddToCartButton = DetailPageAddToCartButton()
+    private var horizontalAddToCartButton: testButton! = nil
     
     
     override func viewDidLoad() {
@@ -66,8 +68,27 @@ class ProductDetailViewController: UIViewController {
         
     }
     
+    //BAK BURAYA
+    
+    private func setupHorizontalAddToCartButton(){
+        horizontalAddToCartButton = testButton(frame: .zero, axis: .horizontal, size: 48)
+        horizontalAddToCartButton.trashButtonDelegate = self
+        horizontalAddToCartButton.cartItemCountDelegate = cartItemCountDelegate
+        horizontalAddToCartButton.count = cartItemCountDelegate?.count(for: product.id ?? "0") ?? 0
+        horizontalAddToCartButton.productId = product.id
+        horizontalAddToCartButton.updateButtonUI()
+        bottomUIView.addSubview(horizontalAddToCartButton)
+        horizontalAddToCartButton.snp.makeConstraints { make in
+            make.top.equalToSuperview().inset(16)
+            make.centerX.equalToSuperview()
+        }
+    }
+    
     @objc func detailPageAddToCartButtonTapped(){
         print("Button Tapped")
+        cartItemCountDelegate?.incrementItemCount(for: product.id ?? "0")
+        setupHorizontalAddToCartButton()
+        detailPageAddToCartButton.isHidden = true
     }
     
     @objc func backButtonTapped() {
@@ -158,5 +179,15 @@ class ProductDetailViewController: UIViewController {
         }
     
    
+    
+}
+
+extension ProductDetailViewController: TrashButtonDelegate{
+    func trashButtonDidPress(productId: String) {
+        detailPageAddToCartButton.isHidden = false
+        horizontalAddToCartButton.isHidden = true
+        //TODO Sepet içeriği çekilip ona göre buton değişecek
+    }
+    
     
 }

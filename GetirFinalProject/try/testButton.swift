@@ -8,14 +8,20 @@
 import UIKit
 import SnapKit
 
-class testButton: UIView {
+protocol TrashButtonDelegate: AnyObject {
+    func trashButtonDidPress(productId: String)
+}
 
+class testButton: UIView {
+       
+       weak var trashButtonDelegate: TrashButtonDelegate?
        weak var cartItemCountDelegate: CartItemCountDelegate?
        private let addButton: UIButton
        private let countLabel: UILabel
        private let trashButton: UIButton
        private let removeButton: UIButton
-    private let stackView: UIStackView = UIStackView()
+       private let stackView: UIStackView = UIStackView()
+       private var size: Int = 0
        var productId: String? = "0"
        
         var count: Int = 0 {
@@ -24,7 +30,8 @@ class testButton: UIView {
            }
        }
        
-        init(frame: CGRect, axis: NSLayoutConstraint.Axis) {
+    init(frame: CGRect, axis: NSLayoutConstraint.Axis, size:Int) {
+        self.size = size
             addButton = UIButton(type: .system)
             countLabel = UILabel()
             trashButton = UIButton(type: .system)
@@ -114,7 +121,7 @@ class testButton: UIView {
         addButton.addTarget(self, action: #selector(handleAddTap), for: .touchUpInside)
         
         addButton.snp.makeConstraints { make in
-            make.width.height.equalTo(32)
+            make.width.height.equalTo(size)
             
         }
         
@@ -129,7 +136,7 @@ class testButton: UIView {
         countLabel.isHidden = true // Hide initially
         
         countLabel.snp.makeConstraints { make in
-            make.width.height.equalTo(32)
+            make.width.height.equalTo(size)
         }
         
     }
@@ -142,7 +149,7 @@ class testButton: UIView {
          trashButton.tintColor = CustomColor.getirPurple
         
         trashButton.snp.makeConstraints { make in
-            make.width.height.equalTo(32)
+            make.width.height.equalTo(size)
         }
        
     }
@@ -155,7 +162,7 @@ class testButton: UIView {
         removeButton.tintColor = CustomColor.getirPurple
         
         removeButton.snp.makeConstraints { make in
-            make.width.height.equalTo(32)
+            make.width.height.equalTo(size)
         }
         
     }
@@ -183,19 +190,32 @@ class testButton: UIView {
  
     
     @objc private func handleAddTap() {
-
-        count += 1
+        if let productId = productId, let delegate = cartItemCountDelegate {
+                   delegate.incrementItemCount(for: productId)
+                   count = delegate.count(for: productId)
+               }
+        
         updateButtonUI()
     }
 
     @objc private func handleRemoveTap() {
-        count -= 1
+        if let productId = productId, let delegate = cartItemCountDelegate {
+                   delegate.decrementItemCount(for: productId)
+                   count = delegate.count(for: productId)
+               }
         updateButtonUI()
     }
 
     @objc private func handleTrashTap() {
-
-        count = 0
+        trashButtonDelegate?.trashButtonDidPress(productId: productId ?? "0")
+        
+        if let productId = productId, let delegate = cartItemCountDelegate {
+                   delegate.removeItem(for: productId)
+                   count = delegate.count(for: productId)
+               }
+        
+        
+        
         updateButtonUI()
     }
 
@@ -224,7 +244,13 @@ class testButton: UIView {
         setCornerRadius()
     }
     
+    func configure(){
+        
+    }
+    
    }
+
+
 
     
     

@@ -9,12 +9,16 @@ import UIKit
 import SnapKit
 
 class CartViewController: UIViewController {
+   
+    
     
     var tableView: UITableView!
-
-
+    weak var listingViewControllerDelegate: ListingViewControllerDelegate?
+    weak var cartItemCountDelegate : CartItemCountDelegate?
+    private var products: [Product] = []
     override func viewDidLoad() {
         super.viewDidLoad()
+        loadProducts()
         view.backgroundColor = CustomColor.listingPageBackground
         setupNavigationBar()
         tableView = UITableView()
@@ -30,6 +34,10 @@ class CartViewController: UIViewController {
         
 
     }
+    private func loadProducts() {
+            products = listingViewControllerDelegate?.fetchProductsInCart() ?? []
+            
+        }
     
     private func setupNavigationBar(){
         self.navigationItem.title = "Sepetim"
@@ -56,18 +64,20 @@ class CartViewController: UIViewController {
 
 extension CartViewController: UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return products.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cartTableViewCell", for: indexPath) as! CartTableViewCell
-            
+        let product = products[indexPath.row]
+        cell.configure(withDelegate: cartItemCountDelegate!, product: product)
             return cell
     }
     
-//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-//        return 72
-//    }
-    
+
     
 }
+
+
+    
+

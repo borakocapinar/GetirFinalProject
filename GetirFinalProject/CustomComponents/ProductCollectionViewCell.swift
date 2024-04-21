@@ -128,7 +128,6 @@ class ProductCollectionViewCell: UICollectionViewCell {
     
     override func prepareForReuse() {
             super.prepareForReuse()
-            verticalAddToCartbuttonView.cartItemCountDelegate = nil
         }
     
     func configure(withDelegate delegate: CartItemCountDelegate, product: Product) {

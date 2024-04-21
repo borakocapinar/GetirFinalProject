@@ -10,8 +10,7 @@ import SnapKit
 import RxSwift
 
 protocol ListingViewControllerDelegate: AnyObject {
-    func fetchHorizontalProducts() -> [Product]
-    func fetchVerticalProducts() -> [Product]
+    func fetchProductsInCart() -> [Product]
 }
 
 
@@ -52,6 +51,12 @@ class ListingViewController: UIViewController {
         setupNavigationBar()
         self.view.bringSubviewToFront(activityIndicator)
 
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        collectionView.reloadData()
+        
     }
     
     
@@ -115,7 +120,8 @@ class ListingViewController: UIViewController {
     
     @objc func cartButtonTapped() {
         let cartVC = CartViewController()
-        
+        cartVC.listingViewControllerDelegate = self
+        cartVC.cartItemCountDelegate = self
         navigationController?.pushViewController(cartVC, animated: true)
        
     }
@@ -287,7 +293,8 @@ extension ListingViewController: UICollectionViewDelegate {
         let product = (indexPath.section == 0) ? horizontalProducts[indexPath.item] : verticalProducts[indexPath.item]
         
         let detailVC = ProductDetailViewController()
-        detailVC.product = product  
+        detailVC.cartItemCountDelegate = self
+        detailVC.product = product
         
         navigationController?.pushViewController(detailVC, animated: true)
     }
@@ -297,13 +304,14 @@ extension ListingViewController: UICollectionViewDelegate {
 //MARK: - ListingViewControllerDelegate Extension
 
 extension ListingViewController: ListingViewControllerDelegate {
-    func fetchHorizontalProducts() -> [Product] {
-        return horizontalProducts
+    func fetchProductsInCart() -> [Product] {
+        let allProducts = horizontalProducts + verticalProducts
+                return allProducts.filter { product in
+                    itemCounts.keys.contains(product.id ?? "0")
+                }
     }
-
-    func fetchVerticalProducts() -> [Product] {
-        return verticalProducts
-    }
+    
+  
 }
 
 //MARK: - CartItemCountDelegate Extension

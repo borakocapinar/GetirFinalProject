@@ -18,7 +18,7 @@ class CartTableViewCell: UITableViewCell {
     private let nameLabel = UILabel()
     private let attributeLabel = UILabel()
     private let priceLabel = UILabel()
-    private let cartButton = testButton(frame: .zero, axis: .horizontal)
+    private let horizontalAddToCartButton = testButton(frame: .zero, axis: .horizontal, size: 32)
 
     // Initialization
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -66,7 +66,7 @@ class CartTableViewCell: UITableViewCell {
         verticalStackView.setCustomSpacing(2, after: attributeLabel)
 
         // Add the custom view
-        contentView.addSubview(cartButton)
+        contentView.addSubview(horizontalAddToCartButton)
     }
 
     // Setup constraints using SnapKit
@@ -75,14 +75,14 @@ class CartTableViewCell: UITableViewCell {
             make.bottom.equalToSuperview().inset(16)
             make.top.equalToSuperview().inset(8)
             make.left.equalToSuperview().inset(12)
-            make.right.equalToSuperview().inset(16)
+            make.right.equalTo(horizontalAddToCartButton.snp.left).offset(8)
         }
 
         itemImageView.snp.makeConstraints { make in
             make.width.height.equalTo(72)
         }
 
-        cartButton.snp.makeConstraints { make in
+        horizontalAddToCartButton.snp.makeConstraints { make in
             make.centerY.equalToSuperview()
             make.right.equalToSuperview().inset(16)
         }
@@ -106,4 +106,32 @@ class CartTableViewCell: UITableViewCell {
         priceLabel.font = CustomFont.openSansBold14
         priceLabel.textColor = CustomColor.getirPurple
     }
+    
+    
+    func configure(withDelegate delegate: CartItemCountDelegate, product: Product) {
+        
+        // Set the image using Kingfisher
+        if let urlString = product.displayImageURL, let url = URL(string: urlString) {
+            itemImageView.kf.setImage(with: url, placeholder: UIImage(named: "placeholder"))
+        } else {
+            itemImageView.image = UIImage(named: "itemIcon")  // Fallback placeholder image
+        }
+
+        // Set other properties
+        priceLabel.text = product.priceText
+        nameLabel.text = product.name
+        attributeLabel.text = product.description
+        let productId = product.id ?? "0"
+        horizontalAddToCartButton.cartItemCountDelegate = delegate
+        horizontalAddToCartButton.count = delegate.count(for: productId)
+        horizontalAddToCartButton.productId = productId
+        horizontalAddToCartButton.updateButtonUI()
+    }
+    
+    override func prepareForReuse() {
+            super.prepareForReuse()
+            horizontalAddToCartButton.cartItemCountDelegate = nil
+        }
+    
+    
 }
