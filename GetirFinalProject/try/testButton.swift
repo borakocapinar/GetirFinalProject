@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-class AddToCartButton: UIView {
+class testButton: UIView {
 
        weak var cartItemCountDelegate: CartItemCountDelegate?
        private let addButton: UIButton
@@ -52,7 +52,7 @@ class AddToCartButton: UIView {
                 }
                 
                 stackView.addArrangedSubview(removeButton)
-                stackView.addArrangedSubview(trashButton) 
+                stackView.addArrangedSubview(trashButton)
                 stackView.addArrangedSubview(countLabel)
                 
                 addSubview(stackView)
@@ -139,7 +139,7 @@ class AddToCartButton: UIView {
          trashButton.setImage(UIImage(named: "trashIcon"), for: .normal)
          trashButton.addTarget(self, action: #selector(handleTrashTap), for: .touchUpInside)
          trashButton.isHidden = true // Hide initially
-        trashButton.tintColor = CustomColor.getirPurple
+         trashButton.tintColor = CustomColor.getirPurple
         
         trashButton.snp.makeConstraints { make in
             make.width.height.equalTo(32)
@@ -184,27 +184,18 @@ class AddToCartButton: UIView {
     
     @objc private func handleAddTap() {
 
-        if let productId = productId, let delegate = cartItemCountDelegate {
-                   delegate.incrementItemCount(for: productId)
-                   count = delegate.count(for: productId)
-               }
+        count += 1
         updateButtonUI()
     }
 
     @objc private func handleRemoveTap() {
-        if let productId = productId, let delegate = cartItemCountDelegate {
-                   delegate.decrementItemCount(for: productId)
-                   count = delegate.count(for: productId)
-               }
+        count -= 1
         updateButtonUI()
     }
 
     @objc private func handleTrashTap() {
 
-        if let productId = productId, let delegate = cartItemCountDelegate {
-                   delegate.removeItem(for: productId)
-                   count = delegate.count(for: productId)
-               }
+        count = 0
         updateButtonUI()
     }
 
@@ -237,4 +228,5 @@ class AddToCartButton: UIView {
 
     
     
+
 

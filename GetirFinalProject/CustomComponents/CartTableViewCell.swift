@@ -6,118 +6,104 @@
 //
 
 import UIKit
+import SnapKit
+import Kingfisher
 
 class CartTableViewCell: UITableViewCell {
 
-    private lazy var iconImageView: UIImageView = {
-           let imageView = UIImageView()
-           imageView.layer.borderWidth = 1
-           imageView.layer.borderColor = UIColor.black.cgColor
-           imageView.contentMode = .scaleAspectFit
-           return imageView
-       }()
-       
-       private lazy var nameLabel: UILabel = {
-           let label = UILabel()
-           label.font = UIFont.systemFont(ofSize: 16, weight: .regular)
-           label.textColor = .black
-           return label
-       }()
-       
-       private lazy var detailLabel: UILabel = {
-           let label = UILabel()
-           label.font = UIFont.systemFont(ofSize: 14, weight: .light)
-           label.textColor = .gray
-           return label
-       }()
-       
-       private lazy var priceLabel: UILabel = {
-           let label = UILabel()
-           label.font = UIFont.systemFont(ofSize: 14, weight: .bold)
-           label.textColor = .blue
-           return label
-       }()
-       
-       private lazy var actionButtonContainer: UIView = {
-           let view = UIView()
-           return view
-       }()
-       
-       private lazy var actionButton: UIButton = {
-           let button = UIButton(type: .system)
-           button.setTitle("Action", for: .normal)
-           button.backgroundColor = .systemBlue
-           button.setTitleColor(.white, for: .normal)
-           button.layer.cornerRadius = 8
-           return button
-       }()
-       
-       // MARK: - Initialization
-       override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-           super.init(style: style, reuseIdentifier: reuseIdentifier)
-           setupViews()
-           setupConstraints()
-       }
-       
-       required init?(coder: NSCoder) {
-           fatalError("init(coder:) has not been implemented")
-       }
-       
-       // MARK: - Setup
-       private func setupViews() {
-           addSubview(iconImageView)
-           addSubview(actionButtonContainer)
-           actionButtonContainer.addSubview(actionButton)
-           
-           let stackView = UIStackView(arrangedSubviews: [nameLabel, detailLabel, priceLabel])
-           stackView.axis = .vertical
-           stackView.spacing = 8
-           addSubview(stackView)
-       }
-       
-       private func setupConstraints() {
-           iconImageView.snp.makeConstraints { make in
-               make.left.equalToSuperview().offset(16)
-               make.centerY.equalToSuperview()
-               make.size.equalTo(CGSize(width: 72, height: 72))
-           }
-           
-           let stackView = subviews.first(where: { $0 is UIStackView }) as! UIStackView
-           stackView.snp.makeConstraints { make in
-               make.left.equalTo(iconImageView.snp.right).offset(12)
-               make.centerY.equalToSuperview()
-           }
-           
-           actionButtonContainer.snp.makeConstraints { make in
-               make.left.equalTo(stackView.snp.right).offset(12)
-               make.centerY.equalToSuperview()
-               make.right.equalToSuperview().offset(-16)
-           }
-           
-           actionButton.snp.makeConstraints { make in
-               make.edges.equalToSuperview().inset(UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10))
-           }
-       }
-       
-       // MARK: - Configuration
-       func configure(with image: UIImage?, name: String, detail: String, price: String) {
-           iconImageView.image = image
-           nameLabel.text = name
-           detailLabel.text = detail
-           priceLabel.text = price
-       }
-    
-    func mockConfigure() {
-        // Using an empty image (you might use a placeholder or default image in a real app)
-        iconImageView.image = UIImage() // Assuming no image provided, creates an empty UIImage
+    // UI Components
+    private let horizontalStackView = UIStackView()
+    private let itemImageView = UIImageView()
+    private let verticalStackView = UIStackView()
+    private let nameLabel = UILabel()
+    private let attributeLabel = UILabel()
+    private let priceLabel = UILabel()
+    private let cartButton = testButton(frame: .zero, axis: .horizontal)
 
-        // Setting up placeholder texts to see the alignment and formatting
-        nameLabel.text = "Product Name"
-        detailLabel.text = "Some detail about the product here."
-        priceLabel.text = "₺100.00"
-
-        // Setting up the action button (if any specific text or action is needed for testing)
-        actionButton.setTitle("Buy Now", for: .normal)
+    // Initialization
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        mockConfigure()
+        setupViews()
+        setupConstraints()
     }
 
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+    // Setup the views
+    private func setupViews() {
+        // Configure the horizontal stack view
+        horizontalStackView.axis = .horizontal
+        horizontalStackView.distribution = .fill
+        horizontalStackView.alignment = .center
+        horizontalStackView.spacing = 16
+        contentView.addSubview(horizontalStackView)
+
+        // Configure the image view
+        itemImageView.layer.cornerRadius = 16
+        itemImageView.clipsToBounds = true
+        itemImageView.contentMode = .scaleAspectFill
+        itemImageView.layer.borderWidth = 1
+        itemImageView.layer.borderColor = CustomColor.primarySubtitle.cgColor
+        horizontalStackView.addArrangedSubview(itemImageView)
+        
+       
+
+        // Configure the vertical stack view
+        verticalStackView.axis = .vertical
+        verticalStackView.distribution = .fill
+        verticalStackView.alignment = .fill
+        horizontalStackView.addArrangedSubview(verticalStackView)
+
+        // Add labels to the vertical stack view
+        verticalStackView.addArrangedSubview(nameLabel)
+        verticalStackView.addArrangedSubview(attributeLabel)
+        verticalStackView.addArrangedSubview(priceLabel)
+
+        verticalStackView.setCustomSpacing(4, after: nameLabel)
+        verticalStackView.setCustomSpacing(2, after: attributeLabel)
+
+        // Add the custom view
+        contentView.addSubview(cartButton)
+    }
+
+    // Setup constraints using SnapKit
+    private func setupConstraints() {
+        horizontalStackView.snp.makeConstraints { make in
+            make.bottom.equalToSuperview().inset(16)
+            make.top.equalToSuperview().inset(8)
+            make.left.equalToSuperview().inset(12)
+            make.right.equalToSuperview().inset(16)
+        }
+
+        itemImageView.snp.makeConstraints { make in
+            make.width.height.equalTo(72)
+        }
+
+        cartButton.snp.makeConstraints { make in
+            make.centerY.equalToSuperview()
+            make.right.equalToSuperview().inset(16)
+        }
+        
+        
+    }
+    
+    func mockConfigure(){
+        itemImageView.image = UIImage(named: "itemIcon")
+
+        nameLabel.text = "Product Name"
+        nameLabel.font = CustomFont.openSansSemiBold12
+        nameLabel.textColor = CustomColor.textDark
+        nameLabel.numberOfLines = 0
+        
+        attributeLabel.text = "Attribute"
+        attributeLabel.font = CustomFont.openSansSemiBold12
+        attributeLabel.textColor = CustomColor.textSecondary
+        
+        priceLabel.text = "₺0,00"
+        priceLabel.font = CustomFont.openSansBold14
+        priceLabel.textColor = CustomColor.getirPurple
+    }
 }

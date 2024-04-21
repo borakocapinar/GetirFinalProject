@@ -10,6 +10,7 @@
 		931153E82BCEF2E600B9AA7D /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 931153E72BCEF2E600B9AA7D /* Kingfisher */; };
 		9338F5642BC96F3100843CCA /* StyleConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9338F5632BC96F3100843CCA /* StyleConstants.swift */; };
 		933F57102BD2FDFA00A6586D /* AddToCartButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 933F570F2BD2FDFA00A6586D /* AddToCartButton.swift */; };
+		9342DDC92BD46CE900E45763 /* testButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9342DDC82BD46CE900E45763 /* testButton.swift */; };
 		935ACB522BCD97FC00B7EB73 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935ACB512BCD97FC00B7EB73 /* Product.swift */; };
 		935ACB552BCDBC5800B7EB73 /* ProductNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935ACB542BCDBC5800B7EB73 /* ProductNetworkManager.swift */; };
 		935ACB592BCDBCE600B7EB73 /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = 935ACB582BCDBCE600B7EB73 /* Moya */; };
@@ -55,6 +56,7 @@
 /* Begin PBXFileReference section */
 		9338F5632BC96F3100843CCA /* StyleConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StyleConstants.swift; sourceTree = "<group>"; };
 		933F570F2BD2FDFA00A6586D /* AddToCartButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddToCartButton.swift; sourceTree = "<group>"; };
+		9342DDC82BD46CE900E45763 /* testButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = testButton.swift; sourceTree = "<group>"; };
 		935ACB512BCD97FC00B7EB73 /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
 		935ACB542BCDBC5800B7EB73 /* ProductNetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductNetworkManager.swift; sourceTree = "<group>"; };
 		935ACB5C2BCDBD2F00B7EB73 /* ProductService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductService.swift; sourceTree = "<group>"; };
@@ -181,6 +183,7 @@
 			isa = PBXGroup;
 			children = (
 				938736E32BC88A93006ABE58 /* tryUIViewController.swift */,
+				9342DDC82BD46CE900E45763 /* testButton.swift */,
 			);
 			path = try;
 			sourceTree = "<group>";
@@ -391,6 +394,7 @@
 				935ACB5D2BCDBD2F00B7EB73 /* ProductService.swift in Sources */,
 				9365FA172BC73EF000B37B0F /* ProductDetailViewController.swift in Sources */,
 				93A57F722BC5F2B10052BD01 /* AppDelegate.swift in Sources */,
+				9342DDC92BD46CE900E45763 /* testButton.swift in Sources */,
 				935ACB552BCDBC5800B7EB73 /* ProductNetworkManager.swift in Sources */,
 				9338F5642BC96F3100843CCA /* StyleConstants.swift in Sources */,
 				9369485B2BD2EBCB002B9B12 /* CartTableViewCell.swift in Sources */,
