@@ -19,12 +19,14 @@ class ProductDetailViewController: UIViewController {
     private let priceLabel = UILabel()
     private let nameLabel = UILabel()
     private let attributeLabel = UILabel()
+    private let bottomUIView = BottomUIView()
+    private let detailPageAddToCartButton = DetailPageAddToCartButton()
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = CustomColor.listingPageBackground
-        print(product.name ?? "problem")
+        setupBottomView()
         setupNavigationBar()
         setupViews()
         setupLabels()
@@ -39,6 +41,33 @@ class ProductDetailViewController: UIViewController {
         navigationItem.leftBarButtonItem = customBackButton
         
         
+    }
+    
+    private func setupBottomView(){
+        view.addSubview(bottomUIView)
+        
+        bottomUIView.snp.makeConstraints { make in
+            make.leading.trailing.bottom.equalToSuperview()
+        }
+        
+        setupDetailPageAddToCartButton()
+    }
+    
+    private func setupDetailPageAddToCartButton(){
+        detailPageAddToCartButton.addTarget(self, action: #selector(detailPageAddToCartButtonTapped), for: .touchUpInside)
+        
+        bottomUIView.addSubview(detailPageAddToCartButton)
+    
+        detailPageAddToCartButton.snp.makeConstraints { make in
+            make.top.equalToSuperview().inset(16)
+            make.left.right.equalToSuperview().inset(16)
+            make.height.equalTo(50)
+        }
+        
+    }
+    
+    @objc func detailPageAddToCartButtonTapped(){
+        print("Button Tapped")
     }
     
     @objc func backButtonTapped() {
