@@ -14,6 +14,7 @@ class ProductDetailViewController: UIViewController {
     
     var product: Product!
     weak var cartItemCountDelegate : CartItemCountDelegate?
+    weak var listingViewControllerDelegate: ListingViewControllerDelegate?
     private let containerView = UIView()
     private let imageView = UIImageView()
     private let stackView = UIStackView()
@@ -23,17 +24,31 @@ class ProductDetailViewController: UIViewController {
     private let bottomUIView = BottomUIView()
     private let detailPageAddToCartButton = DetailPageAddToCartButton()
     private var horizontalAddToCartButton: testButton! = nil
+    private var totalPrice = 0.0
+    private var itemCounts: [String:Int] = [:]{
+        didSet{
+            calculateTotalPrice()
+            updateCartButton()
+        }
+    }
+    
+    
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = CustomColor.listingPageBackground
-        setupBottomView()
         setupNavigationBar()
+        setItemCounts()
+        setupBottomView()
         setupViews()
         setupLabels()
         setupConstraints()
         configureWithProduct(product)
+    }
+    
+    private func setItemCounts(){
+        itemCounts = cartItemCountDelegate?.getItemCounts() ?? [:]
     }
     
     private func setupNavigationBar(){
@@ -42,8 +57,47 @@ class ProductDetailViewController: UIViewController {
         customBackButton.tintColor = .white
         navigationItem.leftBarButtonItem = customBackButton
         
+        let cartButton = CartButton()
+        cartButton.addTarget(self, action: #selector(cartButtonTapped), for: .touchUpInside)
+        let rightBarButtonItem = UIBarButtonItem(customView: cartButton)
+        navigationItem.rightBarButtonItem = rightBarButtonItem
+        
         
     }
+    
+    
+    
+
+    
+    @objc func cartButtonTapped(){
+        let cartVC = CartViewController()
+        cartVC.listingViewControllerDelegate = listingViewControllerDelegate
+        cartVC.cartItemCountDelegate = cartItemCountDelegate
+        navigationController?.pushViewController(cartVC, animated: true)
+    }
+    
+    private func calculateTotalPrice(){
+        totalPrice = 0
+        guard let productsInCart = listingViewControllerDelegate?.fetchProductsInCart() else{return}
+        totalPrice =  productsInCart.reduce(0.0) { (total, product) -> Double in
+            let count = cartItemCountDelegate?.count(for: product.id ?? "0")
+            return total + (Double(count ?? 0) * (product.price ?? 0.0))
+        }
+    }
+    
+    private func updateCartButton() {
+        guard let cartButton = self.navigationItem.rightBarButtonItem?.customView as? CartButton else {
+            return
+        }
+        
+        cartButton.isHidden = totalPrice > 0.0 ? false : true
+        
+        cartButton.setCartLabel(price: totalPrice)
+    }
+    
+   
+    
+    
     
     private func setupBottomView(){
         view.addSubview(bottomUIView)
@@ -53,6 +107,7 @@ class ProductDetailViewController: UIViewController {
         }
         
         setupDetailPageAddToCartButton()
+        setupHorizontalAddToCartButton()
     }
     
     private func setupDetailPageAddToCartButton(){
@@ -66,28 +121,41 @@ class ProductDetailViewController: UIViewController {
             make.height.equalTo(50)
         }
         
+        let currentItemCount = itemCounts[product.id ?? "0"] ?? 0
+        detailPageAddToCartButton.isHidden = currentItemCount == 0 ? false : true
+        print(detailPageAddToCartButton.isHidden )
     }
     
-    //BAK BURAYA
     
     private func setupHorizontalAddToCartButton(){
         horizontalAddToCartButton = testButton(frame: .zero, axis: .horizontal, size: 48)
         horizontalAddToCartButton.trashButtonDelegate = self
+        horizontalAddToCartButton.productDetailViewControllerUpdateItemCountDelegate = self
         horizontalAddToCartButton.cartItemCountDelegate = cartItemCountDelegate
         horizontalAddToCartButton.count = cartItemCountDelegate?.count(for: product.id ?? "0") ?? 0
         horizontalAddToCartButton.productId = product.id
         horizontalAddToCartButton.updateButtonUI()
         bottomUIView.addSubview(horizontalAddToCartButton)
+    
+        
         horizontalAddToCartButton.snp.makeConstraints { make in
             make.top.equalToSuperview().inset(16)
             make.centerX.equalToSuperview()
         }
+        
+       
+        horizontalAddToCartButton.isHidden = !detailPageAddToCartButton.isHidden
+        
     }
     
     @objc func detailPageAddToCartButtonTapped(){
-        print("Button Tapped")
         cartItemCountDelegate?.incrementItemCount(for: product.id ?? "0")
-        setupHorizontalAddToCartButton()
+        setItemCounts()
+        horizontalAddToCartButton.isHidden = false
+        
+        horizontalAddToCartButton.count = cartItemCountDelegate?.count(for: product.id ?? "0") ?? 0
+        horizontalAddToCartButton.updateButtonUI()
+        
         detailPageAddToCartButton.isHidden = true
     }
     
@@ -187,6 +255,12 @@ extension ProductDetailViewController: TrashButtonDelegate{
         detailPageAddToCartButton.isHidden = false
         horizontalAddToCartButton.isHidden = true
         //TODO Sepet içeriği çekilip ona göre buton değişecek
+    }
+}
+
+extension ProductDetailViewController: ProductDetailViewControllerUpdateItemCountDelegate{
+    func updateItemCounts() {
+        setItemCounts()
     }
     
     

@@ -28,7 +28,7 @@ class CartViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        loadProducts()
+        setupProducts()
         view.backgroundColor = CustomColor.listingPageBackground
         setupNavigationBar()
         tableView = UITableView()
@@ -44,7 +44,7 @@ class CartViewController: UIViewController {
         
 
     }
-    private func loadProducts() {
+    private func setupProducts() {
             products = listingViewControllerDelegate?.fetchProductsInCart() ?? []
             
         }

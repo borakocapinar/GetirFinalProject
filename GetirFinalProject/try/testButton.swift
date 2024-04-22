@@ -12,10 +12,15 @@ protocol TrashButtonDelegate: AnyObject {
     func trashButtonDidPress(productId: String)
 }
 
+protocol ProductDetailViewControllerUpdateItemCountDelegate: ProductDetailViewController{
+    func updateItemCounts()
+}
+
 class testButton: UIView {
        
        weak var trashButtonDelegate: TrashButtonDelegate?
        weak var cartItemCountDelegate: CartItemCountDelegate?
+       weak var productDetailViewControllerUpdateItemCountDelegate: ProductDetailViewControllerUpdateItemCountDelegate?
        private let addButton: UIButton
        private let countLabel: UILabel
        private let trashButton: UIButton
@@ -194,6 +199,7 @@ class testButton: UIView {
                    delegate.incrementItemCount(for: productId)
                    count = delegate.count(for: productId)
                }
+        productDetailViewControllerUpdateItemCountDelegate?.updateItemCounts()
         
         updateButtonUI()
     }
@@ -203,6 +209,7 @@ class testButton: UIView {
                    delegate.decrementItemCount(for: productId)
                    count = delegate.count(for: productId)
                }
+        productDetailViewControllerUpdateItemCountDelegate?.updateItemCounts()
         updateButtonUI()
     }
 
@@ -213,7 +220,7 @@ class testButton: UIView {
                    delegate.removeItem(for: productId)
                    count = delegate.count(for: productId)
                }
-        
+        productDetailViewControllerUpdateItemCountDelegate?.updateItemCounts()
         
         
         updateButtonUI()

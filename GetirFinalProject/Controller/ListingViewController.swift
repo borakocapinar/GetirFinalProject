@@ -20,6 +20,9 @@ protocol CartItemCountDelegate: AnyObject {
     func decrementItemCount(for productId: String)
     func removeItem(for productId: String)
     func count(for productId: String) -> Int
+    //TEST
+    func getItemCounts() -> [String:Int]
+    //
 }
 
 
@@ -295,7 +298,9 @@ extension ListingViewController: UICollectionViewDelegate {
         
         let detailVC = ProductDetailViewController()
         detailVC.cartItemCountDelegate = self
+        detailVC.listingViewControllerDelegate = self
         detailVC.product = product
+        
         
         navigationController?.pushViewController(detailVC, animated: true)
     }
@@ -340,6 +345,11 @@ extension ListingViewController: CartItemCountDelegate {
     
     func removeAllItems(){
         itemCounts = [:]
+    }
+    
+    //TEST
+    func getItemCounts() -> [String:Int]{
+        return itemCounts
     }
 }
 

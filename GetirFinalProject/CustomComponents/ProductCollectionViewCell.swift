@@ -27,7 +27,7 @@ class ProductCollectionViewCell: UICollectionViewCell {
         imageView.layer.borderWidth = 1
         imageView.layer.borderColor = CustomColor.primarySubtitle.cgColor
         
-        //Test
+        
         imageView.image = UIImage(named: "itemIcon")
         return imageView
     }()
