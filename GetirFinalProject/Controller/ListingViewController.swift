@@ -15,6 +15,7 @@ protocol ListingViewControllerDelegate: AnyObject {
 
 
 protocol CartItemCountDelegate: AnyObject {
+    func removeAllItems()
     func incrementItemCount(for productId: String)
     func decrementItemCount(for productId: String)
     func removeItem(for productId: String)
@@ -335,6 +336,10 @@ extension ListingViewController: CartItemCountDelegate {
 
     func count(for productId: String) -> Int {
         return itemCounts[productId, default: 0]
+    }
+    
+    func removeAllItems(){
+        itemCounts = [:]
     }
 }
 

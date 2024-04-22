@@ -108,7 +108,7 @@ class CartTableViewCell: UITableViewCell {
     }
     
     
-    func configure(withDelegate delegate: CartItemCountDelegate, product: Product) {
+    func configure( cartItemCountdelegate: CartItemCountDelegate, trashButtonDelegate: TrashButtonDelegate,  product: Product) {
         
         // Set the image using Kingfisher
         if let urlString = product.displayImageURL, let url = URL(string: urlString) {
@@ -122,8 +122,9 @@ class CartTableViewCell: UITableViewCell {
         nameLabel.text = product.name
         attributeLabel.text = product.description
         let productId = product.id ?? "0"
-        horizontalAddToCartButton.cartItemCountDelegate = delegate
-        horizontalAddToCartButton.count = delegate.count(for: productId)
+        horizontalAddToCartButton.cartItemCountDelegate = cartItemCountdelegate
+        horizontalAddToCartButton.trashButtonDelegate = trashButtonDelegate
+        horizontalAddToCartButton.count = cartItemCountdelegate.count(for: productId)
         horizontalAddToCartButton.productId = productId
         horizontalAddToCartButton.updateButtonUI()
     }

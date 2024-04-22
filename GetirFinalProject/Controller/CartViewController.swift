@@ -15,7 +15,17 @@ class CartViewController: UIViewController {
     var tableView: UITableView!
     weak var listingViewControllerDelegate: ListingViewControllerDelegate?
     weak var cartItemCountDelegate : CartItemCountDelegate?
-    private var products: [Product] = []
+    private var products: [Product] = []{
+        didSet{
+            if products.count == 0{
+                navigationController?.popViewController(animated: true)
+            }
+        }
+    }
+    
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         loadProducts()
@@ -53,7 +63,8 @@ class CartViewController: UIViewController {
     
     
     @objc func navbarTrashButtonTapped(){
-        print("Trash Button Tapped!")
+        cartItemCountDelegate?.removeAllItems()
+        products = []
     }
     
     @objc func backButtonTapped() {
@@ -70,11 +81,20 @@ extension CartViewController: UITableViewDataSource{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cartTableViewCell", for: indexPath) as! CartTableViewCell
         let product = products[indexPath.row]
-        cell.configure(withDelegate: cartItemCountDelegate!, product: product)
+        cell.configure(cartItemCountdelegate: cartItemCountDelegate!, trashButtonDelegate: self, product: product)
             return cell
     }
     
 
+    
+}
+
+extension CartViewController: TrashButtonDelegate{
+    func trashButtonDidPress(productId: String) {
+        products = products.filter { $0.id != productId }
+        tableView.reloadData()
+    }
+    
     
 }
 
