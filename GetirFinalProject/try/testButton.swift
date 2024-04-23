@@ -27,6 +27,7 @@ class testButton: UIView {
        private let removeButton: UIButton
        private let stackView: UIStackView = UIStackView()
        private var size: Int = 0
+       private var axis: NSLayoutConstraint.Axis = .horizontal
        var productId: String? = "0"
        
         var count: Int = 0 {
@@ -37,14 +38,16 @@ class testButton: UIView {
        
     init(frame: CGRect, axis: NSLayoutConstraint.Axis, size:Int) {
         self.size = size
+        self.axis = axis
             addButton = UIButton(type: .system)
             countLabel = UILabel()
             trashButton = UIButton(type: .system)
             removeButton = UIButton(type: .system)
             super.init(frame: frame)
+            self.clipsToBounds = true
             setupStackView(axis: axis) // Setup the stack view with the specified axis
             setCornerRadius()
-            configureShadow()
+            configureShadow(axis: axis)
             
            
        }
@@ -106,9 +109,33 @@ class testButton: UIView {
  
     
     private func setCornerRadius(){
-                layer.cornerRadius = 8
-                layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner, .layerMinXMaxYCorner, .layerMaxXMaxYCorner]
-                clipsToBounds = true
+        let cornerRadius = CGFloat(8)
+        addButton.layer.cornerRadius = cornerRadius
+        
+        
+        trashButton.layer.cornerRadius = cornerRadius
+       
+        
+        removeButton.layer.cornerRadius = cornerRadius
+        
+        if axis == .horizontal{
+            addButton.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMaxXMaxYCorner]
+            trashButton.layer.maskedCorners = [.layerMinXMinYCorner, .layerMinXMaxYCorner]
+            removeButton.layer.maskedCorners = [.layerMinXMinYCorner, .layerMinXMaxYCorner]
+            
+        }
+        else{
+            addButton.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
+            trashButton.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
+            removeButton.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
+        }
+        
+        if countLabel.isHidden{
+            addButton.layer.maskedCorners = [.layerMaxXMaxYCorner,.layerMaxXMinYCorner,.layerMinXMaxYCorner,.layerMinXMinYCorner]
+        }
+        
+        clipsToBounds = false
+        
     }
        
        required init?(coder: NSCoder) {
@@ -127,6 +154,7 @@ class testButton: UIView {
         
         addButton.snp.makeConstraints { make in
             make.width.height.equalTo(size)
+            make.right.equalToSuperview()
             
         }
         
@@ -172,25 +200,33 @@ class testButton: UIView {
         
     }
     
-    private func configureShadow() {
-            layer.shadowColor = UIColor.black.withAlphaComponent(0.1).cgColor
-            layer.shadowOpacity = 1
-            layer.shadowOffset = CGSize(width: 0, height: 1)
-            layer.shadowRadius = 3
-            
-            
-            let spread: CGFloat = -1
-            if spread != 0 {
-                let dx = -spread
-                let rect = bounds.insetBy(dx: dx, dy: dx)
-                layer.shadowPath = UIBezierPath(rect: rect).cgPath
-            } else {
-                layer.shadowPath = nil
-            }
 
-            layer.masksToBounds = false
-        }
-   
+    
+    private func configureShadow(axis: NSLayoutConstraint.Axis) {
+        let isHorizontal = (axis == .horizontal)
+                layer.shadowColor = UIColor.black.withAlphaComponent(0.1).cgColor
+                layer.shadowOpacity = 1
+
+                if isHorizontal {
+                    layer.shadowOffset = CGSize(width: 0, height: 0)
+                    layer.shadowRadius = 6
+                    layer.shadowPath = nil
+                } else {
+                    layer.shadowOffset = CGSize(width: 0, height: 1)
+                    layer.shadowRadius = 3
+                    
+                    let spread: CGFloat = -1
+                    if spread != 0 {
+                        let dx = -spread
+                        let rect = bounds.insetBy(dx: dx, dy: dx)
+                        layer.shadowPath = UIBezierPath(rect: rect).cgPath
+                    } else {
+                        layer.shadowPath = nil
+                    }
+                }
+
+                layer.masksToBounds = false
+    }
     
  
     
@@ -244,6 +280,7 @@ class testButton: UIView {
     
     private func setAddButtonRadius(){
         addButton.layer.cornerRadius = 8
+        addButton.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMaxXMinYCorner, .layerMinXMaxYCorner, .layerMinXMinYCorner]
     }
     
     private func resetAddButtonRadius(){
@@ -251,9 +288,8 @@ class testButton: UIView {
         setCornerRadius()
     }
     
-    func configure(){
-        
-    }
+    
+ 
     
    }
 
