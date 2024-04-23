@@ -1,54 +1,54 @@
-////
-////  tryUIViewController.swift
-////  GetirFinalProject
-////
-////  Created by BORA KOCAPINAR on 12.04.24.
-////
 //
-//import UIKit
-//import SnapKit
-//import RxSwift
+//  tryUIViewController.swift
+//  GetirFinalProject
 //
-//class tryUIViewController: UIViewController {
-//    
-//    
+//  Created by BORA KOCAPINAR on 12.04.24.
 //
-//    
-//    
-//    override func viewDidLoad() {
-//        super.viewDidLoad()
-//        view.backgroundColor = .systemBlue
-//        
-//        let testButton = AddToCartButton(frame: .zero, axis: .horizontal)
-//           testButton.translatesAutoresizingMaskIntoConstraints = true // Disable auto-resizing mask
-//           view.addSubview(testButton)
-//
-//        testButton.snp.makeConstraints { make in
-//            make.top.equalToSuperview().inset(100)
-//            make.right.equalToSuperview().inset(200)
-//        }
-//        
-//        
-//        }
-//        
-//        
-//    
-//    
-//        
-//        
-//    }
-//   
-//             
-//                      
-//        
-//           
-//        
-//        
-//        
-//        
-//    
-//    
-//    
-//    
-//    
-//
+
+import UIKit
+import SnapKit
+import RxSwift
+
+class tryUIViewController: UIViewController {
+    
+    
+
+    
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        view.backgroundColor = CustomColor.listingPageBackground
+        let proceedToCheckoutButton = ProceedToCheckoutButton()
+        
+        view.addSubview(proceedToCheckoutButton)
+        
+        proceedToCheckoutButton.snp.makeConstraints { make in
+            make.centerX.centerY.equalToSuperview()
+            make.right.left.equalToSuperview().inset(12)
+        }
+        
+        
+        
+        }
+        
+        
+    
+    
+        
+        
+    }
+   
+             
+                      
+        
+           
+        
+        
+        
+        
+    
+    
+    
+    
+    
+

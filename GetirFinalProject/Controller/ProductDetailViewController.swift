@@ -130,7 +130,7 @@ class ProductDetailViewController: UIViewController {
     private func setupHorizontalAddToCartButton(){
         horizontalAddToCartButton = testButton(frame: .zero, axis: .horizontal, size: 48)
         horizontalAddToCartButton.trashButtonDelegate = self
-        horizontalAddToCartButton.productDetailViewControllerUpdateItemCountDelegate = self
+        horizontalAddToCartButton.updateItemCountDelegate = self
         horizontalAddToCartButton.cartItemCountDelegate = cartItemCountDelegate
         horizontalAddToCartButton.count = cartItemCountDelegate?.count(for: product.id ?? "0") ?? 0
         horizontalAddToCartButton.productId = product.id
@@ -258,7 +258,7 @@ extension ProductDetailViewController: TrashButtonDelegate{
     }
 }
 
-extension ProductDetailViewController: ProductDetailViewControllerUpdateItemCountDelegate{
+extension ProductDetailViewController: UpdateItemCountDelegate{
     func updateItemCounts() {
         setItemCounts()
     }

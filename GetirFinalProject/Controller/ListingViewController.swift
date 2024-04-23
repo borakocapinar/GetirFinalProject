@@ -97,9 +97,9 @@ class ListingViewController: UIViewController {
     private func calculateTotalPrice() {
         totalPrice = 0.0
 
-        for (productId, quantity) in itemCounts {
+        for (productId, count) in itemCounts {
             if let product = (horizontalProducts + verticalProducts).first(where: { $0.id == productId }) {
-                totalPrice += Double(quantity) * (product.price ?? 0)
+                totalPrice += Double(count) * (product.price ?? 0)
             }
         }
     }
