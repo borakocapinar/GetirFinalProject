@@ -130,7 +130,7 @@ class ProductCollectionViewCell: UICollectionViewCell {
             super.prepareForReuse()
         }
     
-    func configure(withDelegate delegate: CartItemCountDelegate, product: Product) {
+    func configure(cartItemCountDelegate: CartItemCountDelegate, updateItemCountDelegate: UpdateItemCountDelegate, product: Product) {
         
         // Set the image using Kingfisher
         if let urlString = product.displayImageURL, let url = URL(string: urlString) {
@@ -144,12 +144,27 @@ class ProductCollectionViewCell: UICollectionViewCell {
         nameLabel.text = product.name
         attributeLabel.text = product.description
         let productId = product.id ?? "0"
-        verticalAddToCartbuttonView.cartItemCountDelegate = delegate
-        verticalAddToCartbuttonView.count = delegate.count(for: productId)
+        verticalAddToCartbuttonView.cartItemCountDelegate = cartItemCountDelegate
+        verticalAddToCartbuttonView.updateItemCountDelegate = updateItemCountDelegate
+        let itemCount = cartItemCountDelegate.count(for: productId)
+        updateImageViewBorderColor(itemCount: itemCount)
+        verticalAddToCartbuttonView.count = itemCount
         verticalAddToCartbuttonView.productId = productId
         verticalAddToCartbuttonView.updateButtonUI()
+        
+    }
+    
+    private func updateImageViewBorderColor(itemCount:Int){
+        if itemCount == 0{
+            imageView.layer.borderColor = CustomColor.primarySubtitle.cgColor
+        }
+        else {
+            imageView.layer.borderColor = CustomColor.getirPurple.cgColor
+        }
     }
         
         
     }
+
+
 

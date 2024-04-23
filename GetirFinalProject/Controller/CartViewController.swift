@@ -93,6 +93,7 @@ class CartViewController: UIViewController {
             make.top.right.left.equalToSuperview()
             make.bottom.equalTo(bottomUIView.snp.top)
         }
+        
     }
     
     private func setupBottomView() {
@@ -184,6 +185,7 @@ extension CartViewController: UITableViewDataSource {
         cell.configure(
             cartItemCountdelegate: cartItemCountDelegate!, trashButtonDelegate: self,
             updateItemCountDelegate: self, product: product)
+        cell.selectionStyle = .none
         return cell
     }
     

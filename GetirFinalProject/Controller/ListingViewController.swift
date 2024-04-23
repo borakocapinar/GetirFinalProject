@@ -283,7 +283,7 @@ class SectionBackgroundView: UICollectionReusableView {
               let product = (indexPath.section == 0) ? horizontalProducts[indexPath.item] : verticalProducts[indexPath.item]
               
               
-              cell.configure(withDelegate: self, product: product)
+              cell.configure(cartItemCountDelegate: self, updateItemCountDelegate: self, product: product)
               return cell
           }
         
@@ -351,6 +351,14 @@ extension ListingViewController: CartItemCountDelegate {
     func getItemCounts() -> [String:Int]{
         return itemCounts
     }
+}
+
+extension ListingViewController: UpdateItemCountDelegate{
+    func updateItemCounts() {
+        collectionView.reloadData()
+    }
+    
+    
 }
 
 

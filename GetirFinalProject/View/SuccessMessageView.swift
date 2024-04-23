@@ -51,21 +51,26 @@ final class SuccessMessageView: UIView {
     }
     
     private func setupMessageLabel() {
-        messageLabel.text = "Checkout Successful!"
+        messageLabel.text = "Sipariş Başarıyla Oluşturuldu!"
         messageLabel.textAlignment = .center
+        messageLabel.font = CustomFont.openSansBold14
+        messageLabel.textColor = CustomColor.textDark
         addSubview(messageLabel)
     }
     
     private func setupSubtitleLabel() {
         subtitleLabel.textAlignment = .center
-        subtitleLabel.textColor = .gray
+        subtitleLabel.textColor = CustomColor.textSecondary
+        subtitleLabel.font = CustomFont.openSansSemiBold16
         addSubview(subtitleLabel)
     }
     
     private func setupOkbutton() {
-        okButton.setTitle("OK", for: .normal)
+        okButton.setTitle("Tamam", for: .normal)
         okButton.backgroundColor = UIColor.systemBlue
         okButton.layer.cornerRadius = 8
+        okButton.backgroundColor = CustomColor.getirPurple
+        okButton.titleLabel?.font = CustomFont.openSansBold14
         okButton.addTarget(self, action: #selector(dismissPopup), for: .touchUpInside)
         addSubview(okButton)
     }
@@ -108,7 +113,7 @@ final class SuccessMessageView: UIView {
     func show(in view: UIView, totalPrice: Double) {
         prepareToShow(in: view)
         guard let formattedPrice = NumberFormatter.turkishLiraFormatter.string(from: NSNumber(value: totalPrice)) else{return}
-        subtitleLabel.text = "Total Price: \(formattedPrice)"
+        subtitleLabel.text = "Toplam Ücret: \(formattedPrice)"
         UIView.animate(withDuration: 0.3) {
             self.alpha = 1
             self.transform = .identity

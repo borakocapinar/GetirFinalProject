@@ -288,6 +288,10 @@ class testButton: UIView {
         setCornerRadius()
     }
     
+    func getItemCount() -> Int{
+        return count
+    }
+    
     
  
     
