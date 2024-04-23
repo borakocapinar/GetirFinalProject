@@ -105,9 +105,10 @@ final class SuccessMessageView: UIView {
         }
     }
     
-    func show(in view: UIView, totalPrice: String) {
+    func show(in view: UIView, totalPrice: Double) {
         prepareToShow(in: view)
-        subtitleLabel.text = "Total Price: \(totalPrice)"
+        guard let formattedPrice = NumberFormatter.turkishLiraFormatter.string(from: NSNumber(value: totalPrice)) else{return}
+        subtitleLabel.text = "Total Price: \(formattedPrice)"
         UIView.animate(withDuration: 0.3) {
             self.alpha = 1
             self.transform = .identity

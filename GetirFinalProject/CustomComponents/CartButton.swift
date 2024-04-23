@@ -101,8 +101,11 @@ class CartButton: UIButton {
     }
     
     func setCartLabel(price: Double){
-        let formattedPrice = String(format: "₺%.2f", price)
-        label.text = formattedPrice
+        if let formattedPrice = NumberFormatter.turkishLiraFormatter.string(from: NSNumber(value: price)) {
+               label.text = formattedPrice
+           } else {
+               label.text = "₺0,00"
+           }
     }
 
     

@@ -161,7 +161,7 @@ class CartViewController: UIViewController {
         }
         
         setBlurEffect()
-        successPopup.show(in: self.view, totalPrice: String(totalPrice))
+        successPopup.show(in: self.view, totalPrice: totalPrice)
         
     }
     

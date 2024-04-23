@@ -87,8 +87,11 @@ class ProceedToCheckoutButton: UIButton {
        }
     
     func setPriceLabel(price: Double){
-        let formattedPrice = String(format: "₺%.2f", price)
-        priceLabel.text = formattedPrice
+        if let formattedPrice = NumberFormatter.turkishLiraFormatter.string(from: NSNumber(value: price)) {
+                priceLabel.text = formattedPrice
+            } else {
+                priceLabel.text = "₺0,00"
+            }
     }
     
     
