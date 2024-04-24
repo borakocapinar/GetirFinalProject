@@ -20,9 +20,7 @@ protocol CartItemCountDelegate: AnyObject {
     func decrementItemCount(for productId: String)
     func removeItem(for productId: String)
     func count(for productId: String) -> Int
-    //TEST
     func getItemCounts() -> [String:Int]
-    //
 }
 
 
@@ -37,15 +35,15 @@ class ListingViewController: UIViewController {
     
     
     var totalPrice: Double = 0.0
-       
+    
     var itemCounts: [String: Int] = [:] {
         didSet {
             calculateTotalPrice()
             updateCartButton()
         }
     }
-
-   
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,7 +52,7 @@ class ListingViewController: UIViewController {
         configureCollectionView()
         setupNavigationBar()
         self.view.bringSubviewToFront(activityIndicator)
-
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -70,17 +68,17 @@ class ListingViewController: UIViewController {
         self.navigationItem.title = "Ürünler"
         let cartButton = CartButton()
         
-       
+        
         
         cartButton.addTarget(self, action: #selector(cartButtonTapped), for: .touchUpInside)
         cartButton.isHidden = true
-       
-
+        
+        
         let rightBarButtonItem = UIBarButtonItem(customView: cartButton)
         navigationItem.rightBarButtonItem = rightBarButtonItem
         
     }
-   
+    
     
     
     private func updateCartButton() {
@@ -96,14 +94,14 @@ class ListingViewController: UIViewController {
     
     private func calculateTotalPrice() {
         totalPrice = 0.0
-
+        
         for (productId, count) in itemCounts {
             if let product = (horizontalProducts + verticalProducts).first(where: { $0.id == productId }) {
                 totalPrice += Double(count) * (product.price ?? 0)
             }
         }
     }
-
+    
     
     
     
@@ -113,13 +111,13 @@ class ListingViewController: UIViewController {
     
     
     private func setupActivityIndicator() {
-            activityIndicator = UIActivityIndicatorView(style: .large)
-            activityIndicator.center = self.view.center
+        activityIndicator = UIActivityIndicatorView(style: .large)
+        activityIndicator.center = self.view.center
         activityIndicator.color = .black
-            self.view.addSubview(activityIndicator)
-            activityIndicator.startAnimating()
-            
-
+        self.view.addSubview(activityIndicator)
+        activityIndicator.startAnimating()
+        
+        
     }
     
     @objc func cartButtonTapped() {
@@ -127,7 +125,7 @@ class ListingViewController: UIViewController {
         cartVC.listingViewControllerDelegate = self
         cartVC.cartItemCountDelegate = self
         navigationController?.pushViewController(cartVC, animated: true)
-       
+        
     }
     
     //MARK: - Compositional Layout
@@ -141,7 +139,7 @@ class ListingViewController: UIViewController {
         collectionView.dataSource = self
         collectionView.delegate = self
         
-     
+        
         
     }
     
@@ -157,15 +155,15 @@ class ListingViewController: UIViewController {
                 let section = NSCollectionLayoutSection(group: group)
                 section.interGroupSpacing = 16
                 let backgroundDecoration = NSCollectionLayoutDecorationItem.background(elementKind: "sectionBackground")
-                            backgroundDecoration.contentInsets = NSDirectionalEdgeInsets(top: 16, leading: 0, bottom: 8, trailing: 0)
-                            section.decorationItems = [backgroundDecoration]
-            
-            
-                section.orthogonalScrollingBehavior = .continuous
-       
+                backgroundDecoration.contentInsets = NSDirectionalEdgeInsets(top: 16, leading: 0, bottom: 8, trailing: 0)
+                section.decorationItems = [backgroundDecoration]
                 
-
-                section.contentInsets = NSDirectionalEdgeInsets(top: 16, leading: 16, bottom: 0, trailing: 8) 
+                
+                section.orthogonalScrollingBehavior = .continuous
+                
+                
+                
+                section.contentInsets = NSDirectionalEdgeInsets(top: 16, leading: 16, bottom: 0, trailing: 8)
                 
                 return section
             } else {
@@ -178,16 +176,11 @@ class ListingViewController: UIViewController {
                 
                 let section = NSCollectionLayoutSection(group: group)
                 section.interGroupSpacing = 16
-                //TEST
+                
                 let backgroundDecoration = NSCollectionLayoutDecorationItem.background(elementKind: "sectionBackground")
-                            backgroundDecoration.contentInsets = NSDirectionalEdgeInsets(top: 8, leading: 0, bottom: 0, trailing: 0)
-                            section.decorationItems = [backgroundDecoration]
-            
-
+                backgroundDecoration.contentInsets = NSDirectionalEdgeInsets(top: 8, leading: 0, bottom: 0, trailing: 0)
+                section.decorationItems = [backgroundDecoration]
                 
-                
-                
-                //BAK BURAYA
                 section.contentInsets = NSDirectionalEdgeInsets(top: 16, leading: 16, bottom: 0, trailing: 0)
                 
                 return section
@@ -197,17 +190,17 @@ class ListingViewController: UIViewController {
         layout.register(SectionBackgroundView.self, forDecorationViewOfKind: "sectionBackground")
         
         
-       
+        
         
         return layout
     }
     
-    //TEST
+    
     
     private func fetchProducts() {
         let verticalObservable = ProductNetworkManager.shared.fetchProducts(service: .getVerticalProducts).asObservable()
         let horizontalObservable = ProductNetworkManager.shared.fetchProducts(service: .getHorizontalProducts).asObservable()
-
+        
         Observable.zip(verticalObservable, horizontalObservable) { (verticalProducts, horizontalProducts) -> (vertical: [Product], horizontal: [Product]) in
             return (vertical: verticalProducts, horizontal: horizontalProducts)
         }
@@ -223,27 +216,13 @@ class ListingViewController: UIViewController {
         })
         .disposed(by: disposeBag)
     }
-
-    
-    
-    
-    
-    
-    //TEST
-    
-    
-
-   
-   
-    
-    
 }
 
 
 class SectionBackgroundView: UICollectionReusableView {
     override init(frame: CGRect) {
         super.init(frame: frame)
-        backgroundColor = .white // Set the background color to white
+        backgroundColor = .white
     }
     
     required init?(coder: NSCoder) {
@@ -258,37 +237,37 @@ class SectionBackgroundView: UICollectionReusableView {
 
 
 
- //MARK: - UICollectionViewDataSource Extension
-    extension ListingViewController: UICollectionViewDataSource {
-        func numberOfSections(in collectionView: UICollectionView) -> Int {
-            return 2
-        }
-        
-        func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-            switch section {
-                   case 0:
-                return horizontalProducts.count
-                   case 1:
-                return verticalProducts.count
-                   default:
-                       return 0
-                   }
-         
-        }
-        
-        func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-              let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! ProductCollectionViewCell
-              
-              // Determine the correct array based on the section
-              let product = (indexPath.section == 0) ? horizontalProducts[indexPath.item] : verticalProducts[indexPath.item]
-              
-              
-              cell.configure(cartItemCountDelegate: self, updateItemCountDelegate: self, product: product)
-              return cell
-          }
-        
-
+//MARK: - UICollectionViewDataSource Extension
+extension ListingViewController: UICollectionViewDataSource {
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 2
     }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        switch section {
+        case 0:
+            return horizontalProducts.count
+        case 1:
+            return verticalProducts.count
+        default:
+            return 0
+        }
+        
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! ProductCollectionViewCell
+        
+        // Determine the correct array based on the section
+        let product = (indexPath.section == 0) ? horizontalProducts[indexPath.item] : verticalProducts[indexPath.item]
+        
+        
+        cell.configure(cartItemCountDelegate: self, updateItemCountDelegate: self, product: product)
+        return cell
+    }
+    
+    
+}
 
 //MARK: - UICollectionViewDelegate Extension
 
@@ -312,12 +291,12 @@ extension ListingViewController: UICollectionViewDelegate {
 extension ListingViewController: ListingViewControllerDelegate {
     func fetchProductsInCart() -> [Product] {
         let allProducts = horizontalProducts + verticalProducts
-                return allProducts.filter { product in
-                    itemCounts.keys.contains(product.id ?? "0")
-                }
+        return allProducts.filter { product in
+            itemCounts.keys.contains(product.id ?? "0")
+        }
     }
     
-  
+    
 }
 
 //MARK: - CartItemCountDelegate Extension
@@ -325,7 +304,7 @@ extension ListingViewController: CartItemCountDelegate {
     func incrementItemCount(for productId: String) {
         itemCounts[productId, default: 0] += 1
     }
-
+    
     func decrementItemCount(for productId: String) {
         let currentCount = itemCounts[productId, default: 0]
         if currentCount > 1 {
@@ -334,11 +313,11 @@ extension ListingViewController: CartItemCountDelegate {
             itemCounts.removeValue(forKey: productId)
         }
     }
-
+    
     func removeItem(for productId: String) {
         itemCounts.removeValue(forKey: productId)
     }
-
+    
     func count(for productId: String) -> Int {
         return itemCounts[productId, default: 0]
     }
@@ -347,7 +326,7 @@ extension ListingViewController: CartItemCountDelegate {
         itemCounts = [:]
     }
     
-    //TEST
+    
     func getItemCounts() -> [String:Int]{
         return itemCounts
     }

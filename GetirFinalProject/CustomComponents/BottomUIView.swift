@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 class BottomUIView: UIView {
-
+    
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -19,8 +19,6 @@ class BottomUIView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    
-    
     private func setupView() {
         backgroundColor = .white
         
@@ -28,5 +26,5 @@ class BottomUIView: UIView {
             make.height.lessThanOrEqualTo(100)
         }
     }
-
+    
 }

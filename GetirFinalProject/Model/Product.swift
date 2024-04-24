@@ -32,18 +32,15 @@ struct Product: Codable {
     }
     
     init(id: String? = nil, imageURL: String? = nil, price: Double? = nil, name: String? = nil, priceText: String? = nil, shortDescription: String? = nil, squareThumbnailURL: String? = nil, attribute: String? = nil) {
-            self.id = id
-            self.imageURL = imageURL
-            self.price = price
-            self.name = name
-            self.priceText = priceText
-            self.shortDescription = shortDescription
-            self.squareThumbnailURL = squareThumbnailURL
-            self.attribute = attribute
-        }
- 
-    
-    
+        self.id = id
+        self.imageURL = imageURL
+        self.price = price
+        self.name = name
+        self.priceText = priceText
+        self.shortDescription = shortDescription
+        self.squareThumbnailURL = squareThumbnailURL
+        self.attribute = attribute
+    }
     
 }
 

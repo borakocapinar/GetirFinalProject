@@ -21,5 +21,4 @@ enum CustomFont{
     static let openSansBold20 = UIFont(name: "OpenSans-Bold", size: 20)!
     static let openSansSemiBold12 = UIFont(name: "OpenSans-SemiBold", size: 12)!
     static let openSansSemiBold16 = UIFont(name: "OpenSans-SemiBold", size: 16)!
-    
 }

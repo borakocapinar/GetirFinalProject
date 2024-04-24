@@ -22,7 +22,7 @@ final class SuccessMessageView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-   
+    
     
     private func setupView() {
         configureAppearance()

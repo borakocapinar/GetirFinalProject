@@ -9,15 +9,9 @@ import UIKit
 import SnapKit
 import Kingfisher
 
-
-
-
 class ProductCollectionViewCell: UICollectionViewCell {
     
-    
     var productId: String?
-    
-   
     
     lazy var imageView: UIImageView = {
         let imageView = UIImageView()
@@ -65,8 +59,8 @@ class ProductCollectionViewCell: UICollectionViewCell {
         return label
     }()
     
-    lazy var verticalAddToCartbuttonView : testButton = {
-        let button = testButton(frame: .zero, axis: .vertical, size: 32)
+    lazy var verticalAddToCartbuttonView : AddToCartButtonView = {
+        let button = AddToCartButtonView(frame: .zero, axis: .vertical, size: 32)
         return button
     }()
     
@@ -103,43 +97,43 @@ class ProductCollectionViewCell: UICollectionViewCell {
             make.width.equalToSuperview()
             make.height.equalTo(imageView.snp.width)
         }
-
+        
         priceLabel.snp.makeConstraints { make in
             make.top.equalTo(imageView.snp.bottom)
             make.leading.trailing.equalToSuperview()
             make.height.equalTo(20)
         }
-
+        
         nameLabel.snp.makeConstraints { make in
             make.top.equalTo(priceLabel.snp.bottom)
             make.leading.trailing.equalToSuperview()
         }
-
+        
         attributeLabel.snp.makeConstraints { make in
             make.top.equalTo(nameLabel.snp.bottom)
             make.leading.trailing.equalToSuperview()
             make.height.equalTo(20)
             
-           
+            
         }
         
         
     }
     
     override func prepareForReuse() {
-            super.prepareForReuse()
-        }
+        super.prepareForReuse()
+    }
     
     func configure(cartItemCountDelegate: CartItemCountDelegate, updateItemCountDelegate: UpdateItemCountDelegate, product: Product) {
         
-        // Set the image using Kingfisher
+       
         if let urlString = product.displayImageURL, let url = URL(string: urlString) {
             imageView.kf.setImage(with: url, placeholder: UIImage(named: "placeholder"))
         } else {
-            imageView.image = UIImage(named: "itemIcon")  // Fallback placeholder image
+            imageView.image = UIImage(named: "itemIcon")
         }
-
-        // Set other properties
+        
+        
         priceLabel.text = product.priceText
         nameLabel.text = product.name
         attributeLabel.text = product.description
@@ -162,9 +156,9 @@ class ProductCollectionViewCell: UICollectionViewCell {
             imageView.layer.borderColor = CustomColor.getirPurple.cgColor
         }
     }
-        
-        
-    }
+    
+    
+}
 
 
 
