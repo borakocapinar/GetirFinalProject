@@ -19,7 +19,7 @@ class CartViewController: UIViewController {
     private var products: [Product] = [] {
         didSet {
             if products.count == 0 {
-                navigationController?.popViewController(animated: true)
+                self.navigationController?.popToRootViewController(animated: true)
             }
         }
     }
@@ -81,7 +81,7 @@ class CartViewController: UIViewController {
     }
     
     @objc func backButtonTapped() {
-        navigationController?.popViewController(animated: true)
+        self.navigationController?.popToRootViewController(animated: true)
     }
     
     private func setupTableView() {
