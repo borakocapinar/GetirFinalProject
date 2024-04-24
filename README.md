@@ -61,13 +61,13 @@ The delegate pattern is employed to facilitate data transfer between screens, ma
 
 Below are the reasons for choosing each of the third-party dependencies utilized in the project:
 
-### [Moya](https://github.com/Moya/Moya)
+- Moya
 Moya was chosen for its ability to abstract the details of network requests into a simple, declarative syntax. This encapsulation aids in making API calls cleaner and more manageable, aligning well with clean architecture principles by keeping networking code decoupled from the rest of the application.
 
-### [SnapKit](https://github.com/SnapKit/SnapKit)
+- SnapKit
 SnapKit is used for its DSL to make Auto Layout constraints more readable and easier to write in Swift. It simplifies the management of UI code, especially when dealing with dynamic view adjustments, thus enhancing code clarity and reducing potential errors in layout design.
 
-### [Kingfisher](https://github.com/onevcat/Kingfisher)
+- Kingfisher
 Kingfisher was selected for its powerful and efficient image downloading and caching capabilities. It significantly simplifies the process of fetching, caching, and displaying images from the web, ensuring smooth and performant image handling in the user interface.
 
 ## Networking Approach
