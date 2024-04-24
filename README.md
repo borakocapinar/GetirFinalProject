@@ -14,6 +14,8 @@ The aim of the project is to develop an application that allows the user to view
 
 <br>
 
+- **Product Listing Screen GIF**:
+
 ![Product Listing](GIFS/ProductListing.gif)
 
 ### Product Details
@@ -21,12 +23,17 @@ The aim of the project is to develop an application that allows the user to view
 
 <br>
 
+
+- **Product Details Screen GIF**:
+
 ![Product Details](GIFS/ProductDetails.gif)
 
 ### Shopping Cart
 - **Description**: Users can view all items in their cart with individual counts. Features include updating quantities, checking out with a success message that shows the total cart amount, and resetting local data post-checkout. Navigation to the cart screen is disabled if the cart is empty.
 
 <br>
+
+- **Cart Screen GIF**:
 
 ![Shopping Cart](GIFS/Cart.gif)
 ## Tech Stack
