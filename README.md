@@ -37,7 +37,7 @@ The aim of the project is to develop an application that allows the user to view
 
 ![Shopping Cart](GIFS/Cart.gif)
 ## Tech Stack
-Detail the technologies and tools used in the development of your app.
+
 - Xcode Version: 15.3
 - Language: Swift 5
 - iOS Version: iOS 14.0
@@ -61,19 +61,25 @@ The delegate pattern is employed to facilitate data transfer between screens, ma
 
 Below are the reasons for choosing each of the third-party dependencies utilized in the project:
 
-- Moya
+- ### Moya
 Moya was chosen for its ability to abstract the details of network requests into a simple, declarative syntax. This encapsulation aids in making API calls cleaner and more manageable, aligning well with clean architecture principles by keeping networking code decoupled from the rest of the application.
 
-- SnapKit
+- ### SnapKit
 SnapKit is used for its DSL to make Auto Layout constraints more readable and easier to write in Swift. It simplifies the management of UI code, especially when dealing with dynamic view adjustments, thus enhancing code clarity and reducing potential errors in layout design.
 
-- Kingfisher
+- ### Kingfisher
 Kingfisher was selected for its powerful and efficient image downloading and caching capabilities. It significantly simplifies the process of fetching, caching, and displaying images from the web, ensuring smooth and performant image handling in the user interface.
 
 ## Networking Approach
 
 The app uses a singleton pattern with Moya to manage network requests efficiently. This approach centralizes network operations through a single, shared instance of the network manager, enhancing consistency and reusability.
 
+## Custom Views
 
+Custom views were incorporated into the project to enhance the project's modularity and reusability. Each component was specifically designed to meet particular needs and functionalities, such as the Add to Cart button with stepper, which was used in various forms across different screens in the project. This not only facilitates consistency in user interface design but also simplifies maintenance by allowing the same custom view to be adapted and reused wherever needed, enhancing the overall flexibility of the application.
 
+## Conclusion
 
+As a developer who began the bootcamp with only basic Swift knowledge, the intensive 5-week bootcamp provided by the Patika and Getir has been immensely beneficial. I am thrilled with the substantial progress I made in such a short period. Throughout the development of the project, my aim was not only to meet all the requirements but also to deliver a production-ready project that adheres to principles of modularity and clean code.
+
+Despite starting with just a foundational knowledge of Swift and having developed some basic apps, my background in computer engineering and the invaluable insights gained during this enriching bootcamp allowed me to complete the project successfully. Given the opportunity, I am confident that I can further enhance my skills and contribute even more effectively to the Getir's goals.
