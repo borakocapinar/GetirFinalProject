@@ -11,15 +11,24 @@ The aim of the project is to develop an application that allows the user to view
 
 ### Product Listing
 - **Description**: The app fetches and displays product data from mock APIs, featuring a horizontal scrollable list for products and a vertical list for product details. Users can navigate to detailed product views by clicking on items in the list.
-- **GIF**: ![Product Listing](GIFS/ProductListing.gif)
+
+<br>
+
+![Product Listing](GIFS/ProductListing.gif)
 
 ### Product Details
 - **Description**: Displays detailed information including the product's image, name, price, description, and current amount in the cart. Users can update product quantities using a stepper control and save changes.
-- **GIF**: ![Product Details](GIFS/ProductDetails.gif)
+
+<br>
+
+![Product Details](GIFS/ProductDetails.gif)
 
 ### Shopping Cart
 - **Description**: Users can view all items in their cart with individual counts. Features include updating quantities, checking out with a success message that shows the total cart amount, and resetting local data post-checkout. Navigation to the cart screen is disabled if the cart is empty.
-- **GIF**: ![Shopping Cart](GIFS/Cart.gif)
+
+<br>
+
+![Shopping Cart](GIFS/Cart.gif)
 ## Tech Stack
 Detail the technologies and tools used in the development of your app.
 - Xcode Version: 15.3
