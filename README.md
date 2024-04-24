@@ -49,3 +49,31 @@ Detail the technologies and tools used in the development of your app.
 - [SnapKit](https://github.com/SnapKit/SnapKit) for programmatic UI auto layout
 - [Kingfisher](https://github.com/onevcat/Kingfisher) for image loading
 
+## Architecture
+
+### MVC Pattern
+For the project, the Model-View-Controller (MVC) architectural pattern has been adopted. This structure is aimed at separating the concerns within the application to promote an organized codebase and improve maintainability.
+
+### Delegate Pattern
+The delegate pattern is employed to facilitate data transfer between screens, maintaining the separation of concerns essential to the MVC architecture. Data and events are passed between the product listing, product details, and shopping cart screens through delegated responsibilities. This approach allows each screen to handle its specific user interactions and UI updates independently, enhancing the application’s modularity and maintainability.
+
+## Rationale for Dependency Selection
+
+Below are the reasons for choosing each of the third-party dependencies utilized in the project:
+
+### [Moya](https://github.com/Moya/Moya)
+Moya was chosen for its ability to abstract the details of network requests into a simple, declarative syntax. This encapsulation aids in making API calls cleaner and more manageable, aligning well with clean architecture principles by keeping networking code decoupled from the rest of the application.
+
+### [SnapKit](https://github.com/SnapKit/SnapKit)
+SnapKit is used for its DSL to make Auto Layout constraints more readable and easier to write in Swift. It simplifies the management of UI code, especially when dealing with dynamic view adjustments, thus enhancing code clarity and reducing potential errors in layout design.
+
+### [Kingfisher](https://github.com/onevcat/Kingfisher)
+Kingfisher was selected for its powerful and efficient image downloading and caching capabilities. It significantly simplifies the process of fetching, caching, and displaying images from the web, ensuring smooth and performant image handling in the user interface.
+
+## Networking Approach
+
+The app uses a singleton pattern with Moya to manage network requests efficiently. This approach centralizes network operations through a single, shared instance of the network manager, enhancing consistency and reusability.
+
+
+
+
