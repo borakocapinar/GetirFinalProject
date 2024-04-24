@@ -20,7 +20,6 @@ The aim of the project is to develop an application that allows the user to view
 ### Shopping Cart
 - **Description**: Users can view all items in their cart with individual counts. Features include updating quantities, checking out with a success message that shows the total cart amount, and resetting local data post-checkout. Navigation to the cart screen is disabled if the cart is empty.
 - **GIF**: ![Shopping Cart](GIFS/Cart.gif)
-- 
 ## Tech Stack
 Detail the technologies and tools used in the development of your app.
 - Xcode Version: 15.3
