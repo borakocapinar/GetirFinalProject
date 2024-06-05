@@ -78,8 +78,3 @@ The app uses a singleton pattern with Moya to manage network requests efficientl
 
 Custom views were incorporated into the project to enhance the project's modularity and reusability. Each component was specifically designed to meet particular needs and functionalities, such as the Add to Cart button with stepper, which was used in various forms across different screens in the project. This not only facilitates consistency in user interface design but also simplifies maintenance by allowing the same custom view to be adapted and reused wherever needed, enhancing the overall flexibility of the application.
 
-## Conclusion
-
-As a developer who began the bootcamp with only basic Swift knowledge, the intensive 5-week bootcamp provided by the Patika and Getir has been immensely beneficial. I am thrilled with the substantial progress I made in such a short period. Throughout the development of the project, my aim was not only to meet all the requirements but also to deliver a production-ready project that adheres to principles of modularity and clean code.
-
-Despite starting with just a foundational knowledge of Swift and having developed some basic apps, my background in computer engineering and the invaluable insights gained during this enriching bootcamp allowed me to complete the project successfully. **Given the opportunity, I am confident that I can further enhance my skills and contribute even more effectively to the Getir's goals.**
